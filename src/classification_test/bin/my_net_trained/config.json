@@ -2,16 +2,16 @@
 	"activation_function" : "RELU",
 	"hidden_layers" : 
 	[
-		256
+		64
 	],
 	"hyperparameters" : 
 	{
 		"dropout" : 0.30000001192092896,
 		"init_weight_range" : 0.0099999997764825821,
-		"learning_rate" : 9.9999997473787516e-05
+		"learning_rate" : 0.0010000000474974513
 	},
-	"input_size" : 784,
-	"output_size" : 10,
+	"input_size" : 36,
+	"output_size" : 7,
 	"weights_file" : 
 	[
 		null,

@@ -1,8 +1,8 @@
 {
   "hyperparameters":
   {
-    "learning_rate"       : 0.0001,
-    "init_weight_range"   : 0.001,
+    "learning_rate"       : 0.00001,
+    "init_weight_range"   : 0.01,
     "dropout"             : 0.3
   },
 
