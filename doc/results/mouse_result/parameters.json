@@ -1,0 +1,381 @@
+{
+	"iterations": 200000,
+	"parameters": [{
+			"seed": 11,
+			"visualisation": true,
+			"size": 8,
+			"negative_density": 0.1,
+			"positive_density": 0.0,
+			"state_noise": 0.0,
+			"eps_decay": 0.99999,
+
+			"brain": {
+				"type": "linear",
+
+				"learning_rate": 0.1,
+				"weight_init_range": 0.001
+			}
+		},
+		{
+			"seed": 11,
+			"visualisation": true,
+			"size": 8,
+			"negative_density": 0.1,
+			"positive_density": 0.0,
+			"state_noise": 0.0,
+			"eps_decay": 0.99999,
+
+			"brain": {
+				"type": "sdm",
+
+				"neurons_count": 256,
+				"active_count": 1,
+				"learning_rate": 0.01,
+				"weight_init_range": 0.1,
+
+				"output_learning_rate": 0.1,
+				"output_weight_init_range": 0.0
+			}
+		},
+		{
+			"seed": 11,
+			"visualisation": true,
+			"size": 8,
+			"negative_density": 0.1,
+			"positive_density": 0.0,
+			"state_noise": 0.0,
+			"eps_decay": 0.99999,
+
+			"brain": {
+				"type": "sdm",
+
+				"neurons_count": 256,
+				"active_count": 2,
+				"learning_rate": 0.01,
+				"weight_init_range": 0.1,
+
+				"output_learning_rate": 0.1,
+				"output_weight_init_range": 0.0
+			}
+		},
+		{
+			"seed": 11,
+			"visualisation": true,
+			"size": 8,
+			"negative_density": 0.1,
+			"positive_density": 0.0,
+			"state_noise": 0.0,
+			"eps_decay": 0.99999,
+
+			"brain": {
+				"type": "sdm",
+
+				"neurons_count": 256,
+				"active_count": 3,
+				"learning_rate": 0.01,
+				"weight_init_range": 0.1,
+
+				"output_learning_rate": 0.1,
+				"output_weight_init_range": 0.0
+			}
+		},
+		{
+			"seed": 11,
+			"visualisation": true,
+			"size": 8,
+			"negative_density": 0.1,
+			"positive_density": 0.0,
+			"state_noise": 0.0,
+			"eps_decay": 0.99999,
+
+			"brain": {
+				"type": "sdm",
+
+				"neurons_count": 256,
+				"active_count": 4,
+				"learning_rate": 0.01,
+				"weight_init_range": 0.1,
+
+				"output_learning_rate": 0.1,
+				"output_weight_init_range": 0.0
+			}
+		},
+		{
+			"seed": 11,
+			"visualisation": true,
+			"size": 8,
+			"negative_density": 0.1,
+			"positive_density": 0.0,
+			"state_noise": 0.0,
+			"eps_decay": 0.99999,
+
+			"brain": {
+				"type": "sdm",
+
+				"neurons_count": 256,
+				"active_count": 8,
+				"learning_rate": 0.01,
+				"weight_init_range": 0.1,
+
+				"output_learning_rate": 0.1,
+				"output_weight_init_range": 0.0
+			}
+		},
+
+
+
+
+
+
+		{
+			"seed": 11,
+			"visualisation": true,
+			"size": 8,
+			"negative_density": 0.1,
+			"positive_density": 0.0,
+			"state_noise": 0.1,
+			"eps_decay": 0.99999,
+
+			"brain": {
+				"type": "linear",
+
+				"learning_rate": 0.1,
+				"weight_init_range": 0.001
+			}
+		},
+		{
+			"seed": 11,
+			"visualisation": true,
+			"size": 8,
+			"negative_density": 0.1,
+			"positive_density": 0.0,
+			"state_noise": 0.1,
+			"eps_decay": 0.99999,
+
+			"brain": {
+				"type": "sdm",
+
+				"neurons_count": 256,
+				"active_count": 1,
+				"learning_rate": 0.01,
+				"weight_init_range": 0.1,
+
+				"output_learning_rate": 0.1,
+				"output_weight_init_range": 0.0
+			}
+		},
+		{
+			"seed": 11,
+			"visualisation": true,
+			"size": 8,
+			"negative_density": 0.1,
+			"positive_density": 0.0,
+			"state_noise": 0.1,
+			"eps_decay": 0.99999,
+
+			"brain": {
+				"type": "sdm",
+
+				"neurons_count": 256,
+				"active_count": 2,
+				"learning_rate": 0.01,
+				"weight_init_range": 0.1,
+
+				"output_learning_rate": 0.1,
+				"output_weight_init_range": 0.0
+			}
+		},
+		{
+			"seed": 11,
+			"visualisation": true,
+			"size": 8,
+			"negative_density": 0.1,
+			"positive_density": 0.0,
+			"state_noise": 0.1,
+			"eps_decay": 0.99999,
+
+			"brain": {
+				"type": "sdm",
+
+				"neurons_count": 256,
+				"active_count": 3,
+				"learning_rate": 0.01,
+				"weight_init_range": 0.1,
+
+				"output_learning_rate": 0.1,
+				"output_weight_init_range": 0.0
+			}
+		},
+		{
+			"seed": 11,
+			"visualisation": true,
+			"size": 8,
+			"negative_density": 0.1,
+			"positive_density": 0.0,
+			"state_noise": 0.1,
+			"eps_decay": 0.99999,
+
+			"brain": {
+				"type": "sdm",
+
+				"neurons_count": 256,
+				"active_count": 4,
+				"learning_rate": 0.01,
+				"weight_init_range": 0.1,
+
+				"output_learning_rate": 0.1,
+				"output_weight_init_range": 0.0
+			}
+		},
+		{
+			"seed": 11,
+			"visualisation": true,
+			"size": 8,
+			"negative_density": 0.1,
+			"positive_density": 0.0,
+			"state_noise": 0.1,
+			"eps_decay": 0.99999,
+
+			"brain": {
+				"type": "sdm",
+
+				"neurons_count": 256,
+				"active_count": 8,
+				"learning_rate": 0.01,
+				"weight_init_range": 0.1,
+
+				"output_learning_rate": 0.1,
+				"output_weight_init_range": 0.0
+			}
+		},
+
+
+
+
+
+
+
+
+		{
+			"seed": 11,
+			"visualisation": true,
+			"size": 8,
+			"negative_density": 0.1,
+			"positive_density": 0.0,
+			"state_noise": 0.2,
+			"eps_decay": 0.99999,
+
+			"brain": {
+				"type": "linear",
+
+				"learning_rate": 0.1,
+				"weight_init_range": 0.001
+			}
+		},
+		{
+			"seed": 11,
+			"visualisation": true,
+			"size": 8,
+			"negative_density": 0.1,
+			"positive_density": 0.0,
+			"state_noise": 0.2,
+			"eps_decay": 0.99999,
+
+			"brain": {
+				"type": "sdm",
+
+				"neurons_count": 256,
+				"active_count": 1,
+				"learning_rate": 0.01,
+				"weight_init_range": 0.1,
+
+				"output_learning_rate": 0.1,
+				"output_weight_init_range": 0.0
+			}
+		},
+		{
+			"seed": 11,
+			"visualisation": true,
+			"size": 8,
+			"negative_density": 0.1,
+			"positive_density": 0.0,
+			"state_noise": 0.2,
+			"eps_decay": 0.99999,
+
+			"brain": {
+				"type": "sdm",
+
+				"neurons_count": 256,
+				"active_count": 2,
+				"learning_rate": 0.01,
+				"weight_init_range": 0.1,
+
+				"output_learning_rate": 0.1,
+				"output_weight_init_range": 0.0
+			}
+		},
+		{
+			"seed": 11,
+			"visualisation": true,
+			"size": 8,
+			"negative_density": 0.1,
+			"positive_density": 0.0,
+			"state_noise": 0.2,
+			"eps_decay": 0.99999,
+
+			"brain": {
+				"type": "sdm",
+
+				"neurons_count": 256,
+				"active_count": 3,
+				"learning_rate": 0.01,
+				"weight_init_range": 0.1,
+
+				"output_learning_rate": 0.1,
+				"output_weight_init_range": 0.0
+			}
+		},
+		{
+			"seed": 11,
+			"visualisation": true,
+			"size": 8,
+			"negative_density": 0.1,
+			"positive_density": 0.0,
+			"state_noise": 0.2,
+			"eps_decay": 0.99999,
+
+			"brain": {
+				"type": "sdm",
+
+				"neurons_count": 256,
+				"active_count": 4,
+				"learning_rate": 0.01,
+				"weight_init_range": 0.1,
+
+				"output_learning_rate": 0.1,
+				"output_weight_init_range": 0.0
+			}
+		},
+		{
+			"seed": 11,
+			"visualisation": true,
+			"size": 8,
+			"negative_density": 0.1,
+			"positive_density": 0.0,
+			"state_noise": 0.2,
+			"eps_decay": 0.99999,
+
+			"brain": {
+				"type": "sdm",
+
+				"neurons_count": 256,
+				"active_count": 8,
+				"learning_rate": 0.01,
+				"weight_init_range": 0.1,
+
+				"output_learning_rate": 0.1,
+				"output_weight_init_range": 0.0
+			}
+		}
+	]
+}

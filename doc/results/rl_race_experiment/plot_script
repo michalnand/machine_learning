@@ -1,0 +1,59 @@
+set   autoscale                        # scale axes automatically
+unset log                              # remove any log-scaling
+unset label                            # remove any previous labels
+set xtic auto                         	# set xtics automatically
+set ytic auto                         # set ytics automatically
+set ztic auto
+
+set key left top
+
+set grid ytics lt 0.1 lw 0.1 lc rgb "#bbbbbb"
+set grid xtics lt 0.1 lw 0.1 lc rgb "#bbbbbb"
+
+#set terminal png size 2048,1356 enhanced font "Helvetica,20"
+set terminal png size 1024,768 enhanced font "Helvetica,20"
+
+
+set xlabel "x"
+set ylabel "y"
+
+set yrange [*:*]
+
+set xlabel "iteration x 1000"
+set ylabel "score"
+#set xtic 20000
+
+set yrange [:]
+
+max(x, y) = (x > y ? x : y)
+min(x, y) = (x < y ? x : y)
+
+
+topology_0_source = "< paste deep_0.000_0_32_32_256_10__progress.log deep_0.000_1_32_32_256_10__progress.log deep_0.000_2_32_32_256_10__progress.log deep_0.000_3_32_32_256_10__progress.log deep_0.000_4_32_32_256_10__progress.log"
+topology_1_source = "< paste deep_0.000_5_32_1_64_4__progress.log deep_0.000_6_32_1_64_4__progress.log deep_0.000_7_32_1_64_4__progress.log deep_0.000_8_32_1_64_4__progress.log deep_0.000_9_32_1_64_4__progress.log"
+topology_2_source = "< paste deep_0.000_10_32_1_64_4_1_32_64_4__progress.log deep_0.000_11_32_1_64_4_1_32_64_4__progress.log deep_0.000_12_32_1_64_4_1_32_64_4__progress.log deep_0.000_13_32_1_64_4_1_32_64_4__progress.log deep_0.000_14_32_1_64_4_1_32_64_4__progress.log"
+
+set output 'deep_progress.png'
+
+
+plot  topology_0_source using ($1/1000):(($2+$5+$8+$11+$14)/5) title 'basic topology' with lines lw 2 lc 'red', \
+      topology_0_source every 100::10 using ($1/1000):(($2+$5+$8+$11+$14)/5):(min(min(min(min($2, $5), $8), $11), $14)):(max(max(max(max($2, $5), $8), $11), $14)) notitle with errorb linewidth 2 lc 'red', \
+      topology_1_source using ($1/1000):(($2+$5+$8+$11+$14)/5) title 'convolution topology' with lines lw 2 lc 'green', \
+      topology_1_source every 100::20 using ($1/1000):(($2+$5+$8+$11+$14)/5):(min(min(min(min($2, $5), $8), $11), $14)):(max(max(max(max($2, $5), $8), $11), $14)) notitle with errorb linewidth 2 lc 'green', \
+      topology_2_source using ($1/1000):(($2+$5+$8+$11+$14)/5) title 'convolution topology + deep layer' with lines lw 2 lc 'blue', \
+      topology_2_source every 100::30 using ($1/1000):(($2+$5+$8+$11+$14)/5):(min(min(min(min($2, $5), $8), $11), $14)):(max(max(max(max($2, $5), $8), $11), $14)) notitle with errorb linewidth 2 lc 'blue', \
+
+
+
+set key right bottom
+
+set output 'deep_progress_per_iteration.png'
+set ylabel "score per iteration"
+
+
+plot  topology_0_source using ($1/1000):(($3+$6+$9+$12+$15)/5) title 'basic topology' with lines lw 2 lc 'red', \
+      topology_0_source every 100::10 using ($1/1000):(($3+$6+$9+$12+$15)/5):(min(min(min(min($3, $6), $9), $13), $15)):(max(max(max(max($3, $6), $9), $12), $15)) notitle with errorb linewidth 2 lc 'red', \
+      topology_1_source using ($1/1000):(($3+$6+$9+$12+$15)/5) title 'convolution topology' with lines lw 2 lc 'green', \
+      topology_1_source every 100::20 using ($1/1000):(($3+$6+$9+$12+$15)/5):(min(min(min(min($3, $6), $9), $12), $15)):(max(max(max(max($3, $6), $9), $12), $15)) notitle with errorb linewidth 2 lc 'green', \
+      topology_2_source using ($1/1000):(($3+$6+$9+$12+$15)/5) title 'convolution topology + deep layer' with lines lw 2 lc 'blue', \
+      topology_2_source every 100::30 using ($1/1000):(($3+$6+$9+$12+$15)/5):(min(min(min(min($3, $6), $9), $12), $15)):(max(max(max(max($3, $6), $9), $12), $15)) notitle with errorb linewidth 2 lc 'blue', \

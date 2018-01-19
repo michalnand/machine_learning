@@ -1,0 +1,69 @@
+set   autoscale                        # scale axes automatically
+unset log                              # remove any log-scaling
+unset label                            # remove any previous labels
+set xtic auto                         	# set xtics automatically
+set ytic auto                         # set ytics automatically
+set ztic auto
+
+
+set grid ytics lt 0.1 lw 0.1 lc rgb "#bbbbbb"
+set grid xtics lt 0.1 lw 0.1 lc rgb "#bbbbbb"
+
+set terminal png size 1024,768 enhanced font "Helvetica,20"
+
+
+
+set xlabel "iteration x 1000"
+set ylabel "score"
+
+set xrange[:]
+set yrange[:]
+
+set xtic auto
+#set ytic 0.2
+
+set key left top
+
+
+set output 'progress.png'
+plot  'progress_16_2_.log' using ($1/1000):2 title 'sdm parameters (16,2)' with lines lw 2.0 lc 'red', \
+      'progress_16_2_.log' every 20::2 using ($1/1000):2:3:4 notitle with errorb linewidth 2 lc 'red', \
+      'progress_32_2_.log' using ($1/1000):2 title 'sdm parameters (32,2)' with lines lw 2.0 lc 'green', \
+      'progress_32_2_.log' every 20::3 using ($1/1000):2:3:4 notitle with errorb linewidth 2 lc 'green', \
+      'progress_64_2_.log' using ($1/1000):2 title 'sdm parameters (64,2)' with lines lw 2.0 lc 'blue', \
+      'progress_64_2_.log' every 20::4 using ($1/1000):2:3:4 notitle with errorb linewidth 2 lc 'blue', \
+      'progress_100_2_.log' using ($1/1000):2 title 'sdm parameters (100,2)' with lines lw 2.0 lc 'orange', \
+      'progress_100_2_.log' every 20::5 using ($1/1000):2:3:4 notitle with errorb linewidth 2 lc 'orange', \
+
+set key left bottom
+set ylabel "score per iteration"
+
+
+set yrange[0.0:0.07]
+
+set output 'progress_per_iteration_16.png'
+plot  'progress_16_1_.log' using ($1/1000):5 title 'sdm parameters (16,1)' with lines lw 2.0 lc 'red', \
+      'progress_16_2_.log' using ($1/1000):5 title 'sdm parameters (16,2)' with lines lw 2.0 lc 'green', \
+      'progress_16_3_.log' using ($1/1000):5 title 'sdm parameters (16,3)' with lines lw 2.0 lc 'blue', \
+      'progress_16_4_.log' using ($1/1000):5 title 'sdm parameters (16, 4)' with lines lw 2.0 lc 'orange', \
+
+
+set output 'progress_per_iteration_32.png'
+plot  'progress_32_1_.log' using ($1/1000):5 title 'sdm parameters (32,1)' with lines lw 2.0 lc 'red', \
+      'progress_32_2_.log' using ($1/1000):5 title 'sdm parameters (32,2)' with lines lw 2.0 lc 'green', \
+      'progress_32_3_.log' using ($1/1000):5 title 'sdm parameters (32,3)' with lines lw 2.0 lc 'blue', \
+      'progress_32_4_.log' using ($1/1000):5 title 'sdm parameters (32, 4)' with lines lw 2.0 lc 'orange', \
+
+
+set output 'progress_per_iteration_64.png'
+plot  'progress_64_1_.log' using ($1/1000):5 title 'sdm parameters (64,1)' with lines lw 2.0 lc 'red', \
+      'progress_64_2_.log' using ($1/1000):5 title 'sdm parameters (64,2)' with lines lw 2.0 lc 'green', \
+      'progress_64_3_.log' using ($1/1000):5 title 'sdm parameters (64,3)' with lines lw 2.0 lc 'blue', \
+      'progress_64_4_.log' using ($1/1000):5 title 'sdm parameters (64, 4)' with lines lw 2.0 lc 'orange', \
+
+
+set output 'progress_per_iteration_100.png'
+plot  'progress_100_1_.log' using ($1/1000):5 title 'sdm parameters (100,1)' with lines lw 2.0 lc 'red', \
+      'progress_100_2_.log' using ($1/1000):5 title 'sdm parameters (100,2)' with lines lw 2.0 lc 'green', \
+      'progress_100_3_.log' using ($1/1000):5 title 'sdm parameters (100,3)' with lines lw 2.0 lc 'blue', \
+      'progress_100_4_.log' using ($1/1000):5 title 'sdm parameters (100, 4)' with lines lw 2.0 lc 'orange', \

@@ -1,0 +1,33 @@
+{
+	"parameters" : 
+	{
+		"creature" : 
+		{
+			"brain" : 
+			{
+				"active_count" : 2,
+				"learning_rate" : 0.01,
+				"neurons_count" : 64,
+				"output_learning_rate" : 0.10000000000000001,
+				"output_weight_init_range" : 0,
+				"type" : "sdm",
+				"weight_init_range" : 0.10000000000000001
+			},
+			"inertia" : 0.69999999999999996,
+			"max_length" : 16,
+			"sensors_count" : 64,
+			"sensors_range" : 0.029999999999999999
+		},
+		"creatures_count" : 10,
+		"eat_radius" : 0.029999999999999999,
+		"food_count" : 50,
+		"iterations" : 50000
+	},
+	"result" : 
+	{
+		"score_average" : 2411.699951171875,
+		"score_max" : 3144,
+		"score_min" : 2032,
+		"score_per_iteration" : 0.048234961926937103
+	}
+}

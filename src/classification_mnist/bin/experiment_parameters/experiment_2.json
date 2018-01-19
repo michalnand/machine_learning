@@ -1,0 +1,6 @@
+{
+  "epoch_count"   : 500,
+  "net_parameters": "net_2",
+  "net_parameters_trained": "net_2_trained",
+  "result_dir"    : "net_2_result"
+}

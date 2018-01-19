@@ -1,0 +1,32 @@
+\frametitle{\bf Making decisions}
+
+
+	\begin{columns}
+		\begin{column}{0.48\textwidth}
+
+			\begin{figure}[ht]
+			\hspace*{-4cm}%
+			\includegraphics[width=1.0\textwidth]{../pictures/tree.jpg}
+			\hspace*{-4cm}%
+			\end{figure}
+
+		\end{column}
+		\begin{column}{0.48\textwidth}
+			\begin{verbatim}
+				if (input == INPUT_1)
+					if (input == INPUT_2)
+						...
+					else
+					 if (input == INPUT_47)
+					 	...
+					 else
+					 	if (input == INPUT_123)
+							 ...
+			\end{verbatim}
+
+		\end{column}
+	\end{columns}
+
+
+
+

@@ -1,0 +1,27 @@
+iterations                     :     50000
+food_count                     :        50
+eat_radius                     :      0.03
+creatures_count                :        10
+
+max_length                     :        16
+sensors_count                  :        64
+sensors_range                  :      0.03
+inertia                        :       0.7
+
+type                           :       sdm
+neurons_count                  :        16
+active_count                   :         3
+learning_rate                  :      0.01
+weight_init_range              :       0.1
+
+output_learning_rate           :       0.1
+output_weight_init_range       :         0
+
+
+
+result
+
+score_average                  :    2228.2
+score_min                      :      1923
+score_max                      :      2720
+score_per_iteration            : 0.0445649

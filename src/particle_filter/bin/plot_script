@@ -1,0 +1,43 @@
+set   autoscale                        # scale axes automatically
+unset log                              # remove any log-scaling
+unset label                            # remove any previous labels
+set xtic auto                         	# set xtics automatically
+set ytic auto                         # set ytics automatically
+set ztic auto
+
+
+set grid ytics lt 0.1 lw 0.1 lc rgb "#bbbbbb"
+set grid xtics lt 0.1 lw 0.1 lc rgb "#bbbbbb"
+
+set terminal png size 1024,768 enhanced font "Helvetica,20"
+
+set output 'result.png'
+
+set key outside bot center
+
+set xrange[-210:210]
+set yrange[-210:210]
+
+set xlabel 'x'
+set ylabel 'y'
+
+unset colorbox
+
+plot  'map/map.log' using 1:2:3 notitle with image pixels, \
+      'path.log' using 1:2 title 'real trajectory' lw 4.0 lc "red" with lines, \
+      'path.log' using 3:4 title 'filtered trajectory' lw 3.0 lc "green" with lines
+
+
+do for [ii=0:999] {
+
+set output sprintf('animation/frame_%05i.png',ii)
+particle_file_name = sprintf('result/particles_%05i.log',ii)
+
+
+plot  'map/map.log' using 1:2:3 notitle with image pixels, \
+      particle_file_name using 1:2 title 'particles' lw 2.0 ps 2 with points, \
+      'path.log' every ::::ii using 1:2 title 'real trajectory' lw 4.0 lc "red" with lines, \
+      'path.log' every ::ii::ii using 1:2 notitle lw 14.0 ps 1 lc "red" with points, \
+      'path.log' every ::::ii using 3:4 title 'filtered trajectory' lw 3.0 lc "green" with lines, \
+      'path.log' every ::ii::ii using 3:4 notitle lw 10.0 ps 1 lc "green" with points
+}

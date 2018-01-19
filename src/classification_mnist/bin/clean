@@ -1,0 +1,17 @@
+rm net_0_result/result.* -rf
+rm net_1_result/result.* -rf
+rm net_2_result/result.* -rf
+rm net_3_result/result.* -rf
+
+
+rm net_0_trained/*.bin -rf
+rm net_0_trained/*.json -rf
+
+rm net_1_trained/*.bin -rf
+rm net_1_trained/*.json -rf
+
+rm net_2_trained/*.bin -rf
+rm net_2_trained/*.json -rf
+
+rm net_3_trained/*.bin -rf
+rm net_3_trained/*.json -rf
