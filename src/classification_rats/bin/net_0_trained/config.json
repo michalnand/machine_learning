@@ -1,0 +1,21 @@
+{
+	"activation_function" : "RELU",
+	"hidden_layers" : 
+	[
+		32
+	],
+	"hyperparameters" : 
+	{
+		"dropout" : 0.30000001192092896,
+		"init_weight_range" : 0.10000000149011612,
+		"learning_rate" : 0.0099999997764825821
+	},
+	"input_size" : 43,
+	"output_size" : 2,
+	"weights_file" : 
+	[
+		null,
+		"net_0_trained/layer_1.bin",
+		"net_0_trained/layer_2.bin"
+	]
+}
