@@ -3,6 +3,7 @@
 
 #include <math_.h>
 #include <log.h>
+#include <timer.h>
 #include <vector>
 
 #include <fnn_extended.h>
@@ -17,8 +18,9 @@ void network_train(CDatasetInterface *dataset)
   FNNExtended nn;
   nn.load_from_file("my_net", dataset->get_input_size(), dataset->get_output_size());
 
-  unsigned int learning_iterations_max = dataset->get_training_size()*200;
+  unsigned int learning_iterations_max = dataset->get_training_size();
 
+  timer.start();
   for (unsigned int iteration = 0; iteration < learning_iterations_max; iteration++)
   {
     sDatasetItem item;
@@ -29,6 +31,9 @@ void network_train(CDatasetInterface *dataset)
     if ((iteration%100) == 0)
       printf("learning done %6.3f %%\n", iteration*100.0/learning_iterations_max);
   }
+  timer.stop();
+
+  printf("training total time %f [s]\n", timer.get_duration()/1000.0);
 
   nn.save_to_file("my_net_trained");
 }
@@ -44,6 +49,8 @@ void network_test(CDatasetInterface *dataset)
   CClassificationCompare compare(dataset->get_output_size());
   std::vector<float> nn_output;
   nn_output.resize(dataset->get_output_size());
+
+  timer.start();
   for (unsigned int idx = 0; idx < testing_items_count; idx++)
   {
     sDatasetItem item;
@@ -51,6 +58,7 @@ void network_test(CDatasetInterface *dataset)
 
     nn.forward(&nn_output[0], &item.input[0]);
 
+    /*
     if ((idx%10) == 0)
     {
       for (unsigned int i = 0; i < item.output.size(); i++)
@@ -63,29 +71,34 @@ void network_test(CDatasetInterface *dataset)
 
       printf("\n");
     }
-
+    */
     compare.compare(&item.output[0], &nn_output[0]);
   }
+  timer.stop();
+
 
   compare.process(true);
   std::string result = compare.get_text_result();
 
   std::cout << result;
+
+  printf("forward total time %f [s]\n", timer.get_duration()/1000.0);
 }
 
 int main()
 {
   math.srand(time(NULL));
 
+/*
   CDatasetdLANDSAT dataset("/home/michal/dataset/landsat/sat.trn",
                            "/home/michal/dataset/landsat/sat.tst");
 
-/*
+*/
   CDatasetMnist dataset("/home/michal/dataset/mnist/train-images.idx3-ubyte",
                         "/home/michal/dataset/mnist/train-labels.idx1-ubyte",
                         "/home/michal/dataset/mnist/t10k-images.idx3-ubyte",
                         "/home/michal/dataset/mnist/t10k-labels.idx1-ubyte");
-*/
+
    network_train(&dataset);
    network_test(&dataset);
 
