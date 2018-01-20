@@ -12,6 +12,7 @@
 #include <dataset_mnist.h>
 #include <classification_compare.h>
 
+#include <email.h>
 
 void network_train(CDatasetInterface *dataset)
 {

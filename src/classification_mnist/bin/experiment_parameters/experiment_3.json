@@ -1,5 +1,5 @@
 {
-  "epoch_count"   : 500,
+  "epoch_count"   : 100,
   "net_parameters": "net_3",
   "net_parameters_trained": "net_3_trained",
   "result_dir"    : "net_3_result"

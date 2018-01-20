@@ -6,6 +6,6 @@
     "dropout"             : 0.3
   },
 
-  "activation_function"   : "RELU",
-  "hidden_layers"         : [512, 64]
+  "activation_function"   : "LRELU",
+  "hidden_layers"         : [256, 64]
 }
