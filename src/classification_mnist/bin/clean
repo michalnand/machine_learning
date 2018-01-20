@@ -8,6 +8,8 @@ rm net_5_result/result.* -rf
 rm net_6_result/result.* -rf
 rm net_7_result/result.* -rf
 
+rm net_8_result/result.* -rf
+rm net_9_result/result.* -rf
 
 rm net_0_trained/*.bin -rf
 rm net_0_trained/*.json -rf
@@ -32,3 +34,9 @@ rm net_6_trained/*.json -rf
 
 rm net_7_trained/*.bin -rf
 rm net_7_trained/*.json -rf
+
+rm net_8_trained/*.bin -rf
+rm net_8_trained/*.json -rf
+
+rm net_9_trained/*.bin -rf
+rm net_9_trained/*.json -rf

@@ -1,0 +1,11 @@
+{
+  "hyperparameters":
+  {
+    "learning_rate"       : 0.0001,
+    "init_weight_range"   : 0.01,
+    "dropout"             : 0.3
+  },
+
+  "activation_function"   : "LRELU",
+  "hidden_layers"         : [512, 512, 64]
+}
