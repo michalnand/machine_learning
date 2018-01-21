@@ -7,7 +7,7 @@
 #include <vector>
 
 #include <fnn_extended.h>
-#include <fnn_autoencoder.h>
+#include <fnn_autoencoder_extended.h>
 
 #include <dataset_landsat.h>
 #include <dataset_mnist.h>
@@ -19,21 +19,22 @@ void network_train(CDatasetInterface *dataset)
   sFNNInit fnn_init;
 
   fnn_init.input_size = dataset->get_input_size();
-  fnn_init.output_size = 16;
+  fnn_init.output_size = 20;
   fnn_init.activation_function = FNN_LRELU_LAYER;
 
   fnn_init.hyperparameters.learning_rate = 0.0001;
-  fnn_init.hyperparameters.init_weight_range = 0.01;
+  fnn_init.hyperparameters.init_weight_range = 0.1;
   fnn_init.hyperparameters.dropout = 0.3;
 
-  fnn_init.hidden_layers.push_back(64);
-  fnn_init.hidden_layers.push_back(32);
+  //fnn_init.hidden_layers.push_back(64);
+  // fnn_init.hidden_layers.push_back(32);
 
 
   FNNAutoencoder nn;
+
   nn.init(fnn_init);
 
-  unsigned int learning_iterations_max = dataset->get_training_size()*200;
+  unsigned int learning_iterations_max = dataset->get_training_size()*10;
 
   timer.start();
   for (unsigned int iteration = 0; iteration < learning_iterations_max; iteration++)
@@ -49,6 +50,8 @@ void network_train(CDatasetInterface *dataset)
   timer.stop();
 
   printf("training total time %f [s]\n", timer.get_duration()/1000.0);
+
+
 
 
   unsigned int testing_items_count = dataset->get_testing_size();
@@ -87,10 +90,7 @@ void network_train(CDatasetInterface *dataset)
   timer.stop();
 
   printf("testing time %f [s]\n", timer.get_duration()/1000.0);
-
 }
-
-
 int main()
 {
   math.srand(time(NULL));
@@ -104,6 +104,7 @@ int main()
                             "/home/michal/dataset/mnist_tiny/testing.bin");
 
   network_train(&dataset);
+
 
   printf("program done\n");
 
