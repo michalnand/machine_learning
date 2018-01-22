@@ -3,9 +3,9 @@
   {
     "learning_rate"       : 0.001,
     "init_weight_range"   : 0.01,
-    "dropout"             : 0.0
+    "dropout"             : 0.1
   },
 
   "activation_function"   : "LRELU",
-  "hidden_layers"         : [64]
+  "hidden_layers"         : [256]
 }

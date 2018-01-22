@@ -2,7 +2,7 @@
 	"activation_function" : "LRELU",
 	"hidden_layers" : 
 	[
-		64
+		256
 	],
 	"hyperparameters" : 
 	{
