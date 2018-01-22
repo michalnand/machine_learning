@@ -19,7 +19,7 @@ void network_train(CDatasetInterface *dataset)
   FNNExtended nn;
   nn.load_from_file("my_net", dataset->get_input_size(), dataset->get_output_size());
 
-  unsigned int learning_iterations_max = dataset->get_training_size()*200;
+  unsigned int learning_iterations_max = dataset->get_training_size()*100;
 
   timer.start();
   for (unsigned int iteration = 0; iteration < learning_iterations_max; iteration++)
@@ -93,12 +93,6 @@ int main()
   CDatasetdLANDSAT dataset("/home/michal/dataset/landsat/sat.trn",
                            "/home/michal/dataset/landsat/sat.tst");
 
-/*
-  CDatasetMnist dataset("/home/michal/dataset/mnist/train-images.idx3-ubyte",
-                        "/home/michal/dataset/mnist/train-labels.idx1-ubyte",
-                        "/home/michal/dataset/mnist/t10k-images.idx3-ubyte",
-                        "/home/michal/dataset/mnist/t10k-labels.idx1-ubyte");
-*/
    network_train(&dataset);
    network_test(&dataset);
 

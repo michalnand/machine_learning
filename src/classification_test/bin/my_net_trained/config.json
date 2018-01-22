@@ -1,14 +1,14 @@
 {
-	"activation_function" : "RELU",
+	"activation_function" : "LRELU",
 	"hidden_layers" : 
 	[
 		64
 	],
 	"hyperparameters" : 
 	{
-		"dropout" : 0.30000001192092896,
+		"dropout" : 0.10000000149011612,
 		"init_weight_range" : 0.0099999997764825821,
-		"learning_rate" : 0.0020000000949949026
+		"learning_rate" : 0.0010000000474974513
 	},
 	"input_size" : 36,
 	"output_size" : 7,
