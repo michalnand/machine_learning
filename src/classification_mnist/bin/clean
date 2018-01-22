@@ -2,41 +2,39 @@ rm net_0_result/result.* -rf
 rm net_1_result/result.* -rf
 rm net_2_result/result.* -rf
 rm net_3_result/result.* -rf
-
 rm net_4_result/result.* -rf
 rm net_5_result/result.* -rf
 rm net_6_result/result.* -rf
 rm net_7_result/result.* -rf
 
-rm net_8_result/result.* -rf
-rm net_9_result/result.* -rf
-
 rm net_0_trained/*.bin -rf
 rm net_0_trained/*.json -rf
+rm net_0_trained/*.png -rf
 
 rm net_1_trained/*.bin -rf
 rm net_1_trained/*.json -rf
+rm net_1_trained/*.png -rf
 
 rm net_2_trained/*.bin -rf
 rm net_2_trained/*.json -rf
+rm net_2_trained/*.png -rf
 
 rm net_3_trained/*.bin -rf
 rm net_3_trained/*.json -rf
+rm net_3_trained/*.png -rf
 
 rm net_4_trained/*.bin -rf
 rm net_4_trained/*.json -rf
+rm net_4_trained/*.png -rf
 
 rm net_5_trained/*.bin -rf
 rm net_5_trained/*.json -rf
+rm net_5_trained/*.png -rf
 
 rm net_6_trained/*.bin -rf
 rm net_6_trained/*.json -rf
+rm net_6_trained/*.png -rf
 
 rm net_7_trained/*.bin -rf
 rm net_7_trained/*.json -rf
-
-rm net_8_trained/*.bin -rf
-rm net_8_trained/*.json -rf
-
-rm net_9_trained/*.bin -rf
-rm net_9_trained/*.json -rf
+rm net_7_trained/*.png -rf

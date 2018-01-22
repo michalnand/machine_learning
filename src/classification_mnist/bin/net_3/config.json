@@ -7,5 +7,5 @@
   },
 
   "activation_function"   : "RELU",
-  "hidden_layers"         : [512, 64]
+  "hidden_layers"         : [256, 64]
 }

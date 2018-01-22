@@ -11,7 +11,7 @@ int main()
   CDatasetMnistTiny dataset("/home/michal/dataset/mnist_tiny/training.bin",
                             "/home/michal/dataset/mnist_tiny/testing.bin");
 
-
+ 
   ClassificationExperiment experiment_00("experiment_parameters/experiment_0.json", &dataset);
   experiment_00.run();
   experiment_00.join();
