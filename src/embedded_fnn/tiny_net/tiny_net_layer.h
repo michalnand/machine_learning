@@ -25,8 +25,9 @@ class TinyNetLayer
     void process(int *output, int *input);
 
   private:
-    void process_linear(int *output, int *input);
-    void process_relu(int *output, int *input);
+    void matrix_dot(int *output, int *input);
+    void activation_linear(int *output);
+    void activation_relu(int *output);
 };
 
 #endif

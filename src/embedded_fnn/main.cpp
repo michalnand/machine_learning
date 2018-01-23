@@ -53,6 +53,7 @@ void network_test(CDatasetInterface *dataset)
 
 
     compare.compare(&item.output[0], &nn_output[0]);
+    
     if ((idx%200) == 0)
     {
       for (unsigned int i = 0; i < item.output.size(); i++)
@@ -65,6 +66,7 @@ void network_test(CDatasetInterface *dataset)
 
       printf("\n");
     }
+
   }
   timer.stop();
 

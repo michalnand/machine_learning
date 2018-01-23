@@ -17,46 +17,61 @@ void TinyNetLayer::process(int *output, int *input)
 {
   input[input_size] = TINY_NET_ONE;
 
+  matrix_dot(output, input);
+
   if (activation == EM_LAYER_ACTIVATION_RELU)
-    process_relu(output, input);
+    activation_relu(output);
   else
-    process_linear(output, input);
+    activation_linear(output);
 }
 
-void TinyNetLayer::process_linear(int *output, int *input)
+void TinyNetLayer::matrix_dot(int *output, int *input)
 {
   unsigned int w_ptr = 0;
 
   for (unsigned int j = 0; j < output_size; j++)
   {
+    unsigned int input_ptr  = 0;
+    unsigned int size       = input_size+1;
+
     long int sum = 0;
 
-    for (unsigned int i = 0; i < (input_size+1); i++)
-      sum+= (weights[w_ptr++]*input[i]);
+
+    while (size >= 4)
+    {
+      sum+= (weights[w_ptr]*input[input_ptr]); w_ptr++; input_ptr++;
+      sum+= (weights[w_ptr]*input[input_ptr]); w_ptr++; input_ptr++;
+      sum+= (weights[w_ptr]*input[input_ptr]); w_ptr++; input_ptr++;
+      sum+= (weights[w_ptr]*input[input_ptr]); w_ptr++; input_ptr++;
+
+      size-= 4;
+    }
+
+
+    while (size)
+    {
+      sum+= (weights[w_ptr]*input[input_ptr]); w_ptr++; input_ptr++;
+      size--;
+    }
 
     sum = (sum*weights_scaling)/(127*1000);
-
     output[j] = sum;
   }
 }
 
-void TinyNetLayer::process_relu(int *output, int *input)
+void TinyNetLayer::activation_linear(int *output)
 {
-  unsigned int w_ptr = 0;
+  (void)output;
+}
 
+void TinyNetLayer::activation_relu(int *output)
+{
   for (unsigned int j = 0; j < output_size; j++)
   {
-    long int sum = 0;
+    int tmp = output[j];
+    if (tmp < 0)
+      tmp = 0;
 
-    for (unsigned int i = 0; i < (input_size+1); i++)
-      sum+= (weights[w_ptr++]*input[i]);
-
-    sum = (sum*weights_scaling)/(127*1000);
-
-    if (sum < 0)
-      sum = 0;
-
-    output[j] = sum;
+    output[j] = tmp;
   }
-
 }
