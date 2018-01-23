@@ -10,9 +10,10 @@
 
 #include <dataset_landsat.h>
 #include <dataset_mnist.h>
+#include <dataset_mnist_tiny.h>
 #include <classification_compare.h>
 
-#include <email.h>
+
 
 void network_train(CDatasetInterface *dataset)
 {
@@ -36,7 +37,7 @@ void network_train(CDatasetInterface *dataset)
 
   printf("training total time %f [s]\n", timer.get_duration()/1000.0);
 
-  nn.save_to_file("my_net_trained");
+  nn.save_to_file("my_net_trained", true);
 }
 
 
@@ -90,8 +91,14 @@ int main()
 {
   math.srand(time(NULL));
 
+/*
   CDatasetdLANDSAT dataset("/home/michal/dataset/landsat/sat.trn",
                            "/home/michal/dataset/landsat/sat.tst");
+*/
+
+CDatasetMnistTiny dataset("/home/michal/dataset/mnist_tiny/training.bin",
+                          "/home/michal/dataset/mnist_tiny/testing.bin");
+
 
    network_train(&dataset);
    network_test(&dataset);
