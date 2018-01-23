@@ -6,6 +6,8 @@
 
 #define TINY_NET_ONE          ((int)127)
 
+typedef short t_nn_buffer;
+
 class TinyNetLayer
 {
   private:
@@ -22,12 +24,12 @@ class TinyNetLayer
               signed char *weights_, unsigned int weights_scaling_,
               unsigned char activation_);
 
-    void process(int *output, int *input);
+    void process(t_nn_buffer *output, t_nn_buffer *input);
 
   private:
-    void matrix_dot(int *output, int *input);
-    void activation_linear(int *output);
-    void activation_relu(int *output);
+    void matrix_dot(t_nn_buffer *output, t_nn_buffer *input);
+    void activation_linear(t_nn_buffer *output);
+    void activation_relu(t_nn_buffer *output);
 };
 
 #endif

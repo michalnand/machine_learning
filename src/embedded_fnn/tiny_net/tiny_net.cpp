@@ -6,8 +6,8 @@
 
 TinyNet nn;
 
-int tiny_net_buffer_a[TINY_NET_BUFFER_SIZE];
-int tiny_net_buffer_b[TINY_NET_BUFFER_SIZE];
+t_nn_buffer tiny_net_buffer_a[TINY_NET_BUFFER_SIZE];
+t_nn_buffer tiny_net_buffer_b[TINY_NET_BUFFER_SIZE];
 
 void TinyNet::init()
 {
@@ -63,7 +63,7 @@ void TinyNet::buffer_start()
 
 void TinyNet::buffer_exchange()
 {
-  int *tmp;
+  t_nn_buffer *tmp;
   tmp = input;
   input = output;
   output = tmp;

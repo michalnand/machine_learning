@@ -13,7 +13,7 @@ void TinyNetLayer::init(unsigned int input_size_, unsigned int output_size_,
   activation      = activation_;
 }
 
-void TinyNetLayer::process(int *output, int *input)
+void TinyNetLayer::process(t_nn_buffer *output, t_nn_buffer *input)
 {
   input[input_size] = TINY_NET_ONE;
 
@@ -25,7 +25,7 @@ void TinyNetLayer::process(int *output, int *input)
     activation_linear(output);
 }
 
-void TinyNetLayer::matrix_dot(int *output, int *input)
+void TinyNetLayer::matrix_dot(t_nn_buffer *output, t_nn_buffer *input)
 {
   unsigned int w_ptr = 0;
 
@@ -59,12 +59,12 @@ void TinyNetLayer::matrix_dot(int *output, int *input)
   }
 }
 
-void TinyNetLayer::activation_linear(int *output)
+void TinyNetLayer::activation_linear(t_nn_buffer *output)
 {
   (void)output;
 }
 
-void TinyNetLayer::activation_relu(int *output)
+void TinyNetLayer::activation_relu(t_nn_buffer *output)
 {
   for (unsigned int j = 0; j < output_size; j++)
   {

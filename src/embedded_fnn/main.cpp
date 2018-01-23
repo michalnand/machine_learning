@@ -53,7 +53,7 @@ void network_test(CDatasetInterface *dataset)
 
 
     compare.compare(&item.output[0], &nn_output[0]);
-    
+
     if ((idx%200) == 0)
     {
       for (unsigned int i = 0; i < item.output.size(); i++)
@@ -81,6 +81,8 @@ void network_test(CDatasetInterface *dataset)
 
 int main()
 {
+  printf(">>>> %u\n", sizeof(t_nn_buffer));
+  
   CDatasetMnistTiny dataset("/home/michal/dataset/mnist_tiny/training.bin",
                             "/home/michal/dataset/mnist_tiny/testing.bin");
 

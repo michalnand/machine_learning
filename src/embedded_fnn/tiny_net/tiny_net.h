@@ -6,8 +6,8 @@
 class TinyNet
 {
   public:
-    int *input;
-    int *output;
+    t_nn_buffer *input;
+    t_nn_buffer *output;
 
     void init();
     void process();
