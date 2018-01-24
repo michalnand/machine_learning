@@ -91,16 +91,11 @@ int main()
 {
   math.srand(time(NULL));
 
-/*
-  CDatasetdLANDSAT dataset("/home/michal/dataset/landsat/sat.trn",
-                           "/home/michal/dataset/landsat/sat.tst");
-*/
-
 CDatasetMnistTiny dataset("/home/michal/dataset/mnist_tiny/training.bin",
                           "/home/michal/dataset/mnist_tiny/testing.bin");
 
 
-   network_train(&dataset);
+//   network_train(&dataset);
    network_test(&dataset);
 
   printf("program done\n");

@@ -105,7 +105,7 @@ void network_test_hw_in_loop(CDatasetInterface *dataset)
   printf("starting\n");
 
   timer.start();
-  for (unsigned int i = 0; i < 100; i++)
+  for (unsigned int i = 0; i < 1000; i++)
   {
     unsigned int idx = rand()%testing_items_count;
     sDatasetItem item;
@@ -143,8 +143,7 @@ int main()
   CDatasetMnistTiny dataset("/home/michal/dataset/mnist_tiny/training.bin",
                             "/home/michal/dataset/mnist_tiny/testing.bin");
 
-  // network_test(&dataset);
-
+// network_test(&dataset);
   network_test_hw_in_loop(&dataset);
 
   printf("program done\n");

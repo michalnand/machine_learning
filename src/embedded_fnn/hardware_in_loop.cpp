@@ -3,7 +3,7 @@
 HardwareInLoop::HardwareInLoop()
 {
   serial_port = new CSerialPort("/dev/ttyUSB0");
-}
+} 
 
 HardwareInLoop::~HardwareInLoop()
 {
