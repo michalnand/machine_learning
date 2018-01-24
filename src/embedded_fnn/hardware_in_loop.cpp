@@ -12,7 +12,7 @@ HardwareInLoop::~HardwareInLoop()
 
 void HardwareInLoop::send(std::vector<float> &v)
 {
-  std::string res;
+  std::string res = "d";
 
   for (unsigned int i = 0; i < v.size(); i++)
   {

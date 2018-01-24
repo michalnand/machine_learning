@@ -8,6 +8,8 @@
 
 #include <tiny_net/tiny_net.h>
 
+#include <hardware_in_loop.h>
+
 void nn_set_input_from_float(std::vector<float> &input)
 {
   for (unsigned int i = 0; i < nn.get_input_size(); i++)
@@ -53,7 +55,16 @@ void network_test(CDatasetInterface *dataset)
 
 
     compare.compare(&item.output[0], &nn_output[0]);
-
+    if ((idx%200) == 0)
+    {
+      for (unsigned int i = 0; i < item.input.size(); i++)
+        printf("%i ", nn.input[i]);
+      printf("\n>\n");
+      for (unsigned int i = 0; i < item.output.size(); i++)
+        printf("%i ", nn.output[i]);
+      printf("\n\n\n");
+    }
+    /*
     if ((idx%200) == 0)
     {
       for (unsigned int i = 0; i < item.output.size(); i++)
@@ -66,7 +77,55 @@ void network_test(CDatasetInterface *dataset)
 
       printf("\n");
     }
+    */
+  }
+  timer.stop();
 
+
+  compare.process(true);
+  std::string result = compare.get_text_result();
+
+  std::cout << result;
+
+  printf("forward total time %f [s]\n", timer.get_duration()/1000.0);
+}
+
+
+
+
+void network_test_hw_in_loop(CDatasetInterface *dataset)
+{
+  unsigned int testing_items_count = dataset->get_testing_size();
+
+  CClassificationCompare compare(dataset->get_output_size());
+
+  HardwareInLoop hw_in_loop;
+
+  sleep(3);
+  printf("starting\n");
+
+  timer.start();
+  for (unsigned int i = 0; i < 100; i++)
+  {
+    unsigned int idx = rand()%testing_items_count;
+    sDatasetItem item;
+    item = dataset->testing[idx];
+
+    hw_in_loop.send(item.input);
+    std::vector<float> nn_output = hw_in_loop.get();
+
+
+    for (unsigned int i = 0; i < item.output.size(); i++)
+      printf("%6.3f ", item.output[i]);
+
+    printf(" >> ");
+
+    for (unsigned int i = 0; i < nn_output.size(); i++)
+      printf("%6.3f ", nn_output[i]);
+
+    printf("\n");
+
+    compare.compare(&item.output[0], &nn_output[0]);
   }
   timer.stop();
 
@@ -81,12 +140,12 @@ void network_test(CDatasetInterface *dataset)
 
 int main()
 {
-  printf(">>>> %u\n", sizeof(t_nn_buffer));
-  
   CDatasetMnistTiny dataset("/home/michal/dataset/mnist_tiny/training.bin",
                             "/home/michal/dataset/mnist_tiny/testing.bin");
 
-   network_test(&dataset);
+  // network_test(&dataset);
+
+  network_test_hw_in_loop(&dataset);
 
   printf("program done\n");
 
