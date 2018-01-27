@@ -1,9 +1,9 @@
 {
   "hyperparameters":
   {
-    "learning_rate"       : 0.0001,
+    "learning_rate"       : 0.0002,
     "init_weight_range"   : 0.01,
-    "dropout"             : 0.2
+    "dropout"             : 0.1
   },
 
   "activation_function"   : "RELU",
