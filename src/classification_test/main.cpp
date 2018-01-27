@@ -60,8 +60,8 @@ void network_test(CDatasetInterface *dataset)
 
     nn.forward(&nn_output[0], &item.input[0]);
 
-    /*
-    if ((idx%10) == 0)
+
+    if ((idx%100) == 0)
     {
       for (unsigned int i = 0; i < item.output.size(); i++)
         printf("%6.3f ", item.output[i]);
@@ -73,7 +73,7 @@ void network_test(CDatasetInterface *dataset)
 
       printf("\n");
     }
-    */
+
     compare.compare(&item.output[0], &nn_output[0]);
   }
   timer.stop();
@@ -95,7 +95,8 @@ CDatasetMnistTiny dataset("/home/michal/dataset/mnist_tiny/training.bin",
                           "/home/michal/dataset/mnist_tiny/testing.bin");
 
 
-//   network_train(&dataset);
+
+   network_train(&dataset);
    network_test(&dataset);
 
   printf("program done\n");

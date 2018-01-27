@@ -18,16 +18,16 @@ TinyNetLayer tiny_net_layers[TINY_NET_LAYERS_COUNT];
 
 
 
-unsigned int tiny_net_weights_scaling[TINY_NET_LAYERS_COUNT] = {515, 571, 1730, };
+unsigned int tiny_net_weights_scaling[TINY_NET_LAYERS_COUNT] = {375, 466, 1410, };
 
 
 signed char* tiny_net_weights_init[TINY_NET_LAYERS_COUNT] = {weights_layer_1, weights_layer_2, weights_layer_3, };
 
 
-unsigned int tiny_net_topology[TINY_NET_LAYERS_COUNT+1] ={81, 100, 60, 10};
+unsigned int tiny_net_topology[TINY_NET_LAYERS_COUNT+1] ={81, 256, 60, 10};
 
 
-#define TINY_NET_BUFFER_SIZE    ((unsigned int)101)
+#define TINY_NET_BUFFER_SIZE    ((unsigned int)257)
 
 
 
