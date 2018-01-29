@@ -92,7 +92,7 @@ int main()
   printf("output size %u %u\n", output_size, kernel_geometry.d);
 
   for (unsigned int i =0 ; i < 10000; i++)
-  convolution_test(&output[0], &input[0], weights, input_geometry, kernel_geometry);
+    convolution_test(&output[0], &input[0], weights, input_geometry, kernel_geometry);
 
 
   CImage output_image(input_geometry.w, input_geometry.h*kernel_geometry.d);
