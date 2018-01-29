@@ -10,7 +10,7 @@ void convolution_test(float *output, float *input,
                       sLayerGeometry input_geometry, sLayerGeometry kernel_geometry)
 {
   float *dev_input  = nn_allocator.allocate(input_geometry.w*input_geometry.h*input_geometry.d);
-  float *dev_output = nn_allocator.allocate(input_geometry.w*input_geometry.h*input_geometry.d*kernel_geometry.d);
+  float *dev_output = nn_allocator.allocate(input_geometry.w*input_geometry.h*kernel_geometry.d);
 
   sHyperparameters hyperparameters;
 
@@ -19,7 +19,7 @@ void convolution_test(float *output, float *input,
   FilterLayer filter;
 
   sLayerGeometry output_geometry = input_geometry;
-  output_geometry.d = input_geometry.d*kernel_geometry.d;
+  output_geometry.d = kernel_geometry.d;
 
   input_layer.init(input_geometry, kernel_geometry, hyperparameters);
   output_layer.init(output_geometry, kernel_geometry, hyperparameters);
@@ -44,7 +44,7 @@ void convolution_test(float *output, float *input,
 
 int main()
 {
-  CImage input_image("input_small.jpg");
+  CImage input_image("input_big.jpg");
 
   sLayerGeometry input_geometry;
   input_geometry.w = input_image.width;
@@ -56,44 +56,44 @@ int main()
   kernel_geometry.h = 3;
   kernel_geometry.d = 5;
 
-  unsigned int features_map = input_geometry.d*kernel_geometry.d;
-
 
   float weights[] = {
-                      1.0/9.0, 1.0/9.0, 1.0/9.0,
-                      1.0/9.0, 1.0/9.0, 1.0/9.0,
-                      1.0/9.0, 1.0/9.0, 1.0/9.0,
+                      0.111, 0.111, 0.111, 0.111, 0.111, 0.111, 0.111, 0.111, 0.111,
+                      0.111, 0.111, 0.111, 0.111, 0.111, 0.111, 0.111, 0.111, 0.111,
+                      0.111, 0.111, 0.111, 0.111, 0.111, 0.111, 0.111, 0.111, 0.111,
 
-                      0.0, -1.0, 0.0,
-                      -1.0, 5.0, -1.0,
-                      0.0, -1.0, 0.0,
+                      0.0,   0.0,   0.0,  -0.083,  -0.083,  -0.083,   0.0,   0.0,   0.0,
+                     -0.083,  -0.083,  -0.083,   0.333,   0.333,   0.333,  -0.083,  -0.083,  -0.083,
+                      0.0,   0.0,   0.0,  -0.083,  -0.083,  -0.083,   0.0,   0.0,   0.0,
 
-                      0.0, -0.25, 0.0,
-                      -0.25, 1.0, -0.25,
-                      0.0, -0.25, 0.0,
+                        0.0,   0.0,   0.0,  -0.066,  -0.066,  -0.066,   0.0,   0.0,   0.0,
+                       -0.066,  -0.066,  -0.066,   0.333,   0.333,   0.333,  -0.066,  -0.066,  -0.066,
+                        0.0,   0.0,   0.0,  -0.066,  -0.066,  -0.066,   0.0,   0.0,   0.0,
 
-                      0.0, -0.5, 0.0,
-                      0.0, 1.0,  0.0,
-                      0.0, -0.5, 0.0,
 
-                      0.0,  0.0, 0.0,
-                      -0.5, 1.0,  -0.5,
-                      0.0,  0.0, 0.0,
+                        0.0,   0.0,   0.0,  0.0,  0.0,  0.0,   0.0,   0.0,   0.0,
+                       -0.333,  -0.333,  -0.333,   0.333,   0.333,   0.333,  -0.333,  -0.333,  -0.333,
+                       0.0,   0.0,   0.0,  0.0,  0.0,  0.0,   0.0,   0.0,   0.0,
+
+
+                       0.0,   0.0,   0.0,  -0.333,  -0.333,  -0.333,   0.0,   0.0,   0.0,
+                      0.0,  0.0,  0.0,   0.333,   0.333,   0.333,  0.0,  0.0,  0.0,
+                      0.0,   0.0,   0.0,  -0.333,  -0.333,  -0.333,   0.0,   0.0,   0.0,
                     };
 
-  unsigned int output_size = input_geometry.w*input_geometry.h*features_map;
+  unsigned int output_size = input_geometry.w*input_geometry.h*kernel_geometry.d;
   std::vector<float> input = input_image.as_vector(false);
 
   std::vector<float> output(output_size);
 
-  printf("output size %u %u\n", output_size, features_map);
+  printf("output size %u %u\n", output_size, kernel_geometry.d);
 
   convolution_test(&output[0], &input[0], weights, input_geometry, kernel_geometry);
 
 
-  CImage output_image(input_geometry.w, input_geometry.h*features_map);
+  CImage output_image(input_geometry.w, input_geometry.h*kernel_geometry.d);
 
-  output_image.from_feature_map(output, features_map);
+  output_image.from_feature_map(output, kernel_geometry.d);
   output_image.save("output.jpg");
 
 
