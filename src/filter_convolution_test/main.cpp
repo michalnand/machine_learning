@@ -1,7 +1,7 @@
 #include <image.h>
 #include <input_layer.h>
 #include <output_layer.h>
-#include <filter_layer.h>
+#include <convolution_layer.h>
 
 #include <timer.h>
 
@@ -18,7 +18,7 @@ void convolution_test(float *output, float *input,
 
   InputLayer input_layer;
   OutputLayer output_layer;
-  FilterLayer filter;
+  ConvolutionLayer filter;
 
   sLayerGeometry output_geometry = input_geometry;
   output_geometry.d = kernel_geometry.d;
@@ -48,7 +48,7 @@ int main()
 {
   math.srand(time(NULL));
 
-  CImage input_image("input_big.jpg");
+  CImage input_image("input_small.jpg");
 
   sLayerGeometry input_geometry;
   input_geometry.w = input_image.width;
