@@ -17,7 +17,7 @@ TinyNetLayer tiny_net_layers[TINY_NET_LAYERS_COUNT];
 
 
 
-unsigned int tiny_net_weights_scaling[TINY_NET_LAYERS_COUNT] = {390, 939, };
+unsigned int tiny_net_weights_scaling[TINY_NET_LAYERS_COUNT] = {457, 948, };
 
 
 signed char* tiny_net_weights_init[TINY_NET_LAYERS_COUNT] = {weights_layer_1, weights_layer_2, };
