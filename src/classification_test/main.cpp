@@ -20,7 +20,7 @@ void network_train(CDatasetInterface *dataset)
   FNNExtended nn;
   nn.load_from_file("my_net", dataset->get_input_size(), dataset->get_output_size());
 
-  unsigned int learning_iterations_max = dataset->get_training_size()*100;
+  unsigned int learning_iterations_max = dataset->get_training_size(); //*100;
 
   timer.start();
   for (unsigned int iteration = 0; iteration < learning_iterations_max; iteration++)
@@ -91,12 +91,12 @@ int main()
 {
   math.srand(time(NULL));
 
+
 CDatasetMnistTiny dataset("/home/michal/dataset/mnist_tiny/training.bin",
                           "/home/michal/dataset/mnist_tiny/testing.bin");
 
 
-
-//   network_train(&dataset);
+  // network_train(&dataset);
    network_test(&dataset);
 
   printf("program done\n");
