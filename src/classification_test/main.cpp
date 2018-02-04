@@ -96,7 +96,7 @@ CDatasetMnistTiny dataset("/home/michal/dataset/mnist_tiny/training.bin",
 
 
 
-   network_train(&dataset);
+//   network_train(&dataset);
    network_test(&dataset);
 
   printf("program done\n");
