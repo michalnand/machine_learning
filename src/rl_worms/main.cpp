@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include <cliff.h>
+#include <worms_arena.h>
 #include <i_rl_agent.h>
 #include <fnn_rl_agent.h>
 
@@ -14,13 +14,18 @@ int main()
 {
   math.srand(time(NULL));
 
+  WormsArena env;
+
+  while (1)
+  {
+    env.do_action(rand()%3);
+  }
+/*
   sRLHyperParameters agent_hyperparameters;
   agent_hyperparameters.path_max_length = 100;
   agent_hyperparameters.gamma = 0.98;
   agent_hyperparameters.epsilon = 0.3;
   agent_hyperparameters.path_epochs_count = 10;
-
-  Cliff env;
 
 
 
@@ -37,8 +42,8 @@ int main()
   nn_init.hyperparameters.init_weight_range = 0.001;
   nn_init.hyperparameters.dropout = 0.0;
   nn_init.hyperparameters.lambda = 0.000000001;
- 
-  nn_init.hidden_layers.push_back(16);
+
+  nn_init.hidden_layers.push_back(8);
 
   RL_FNN_Agent agent(&env, agent_hyperparameters, nn_init);
 
@@ -47,7 +52,7 @@ int main()
     agent.process_learn();
     env.visualisation();
   }
-
+*/
   printf("program done\n");
 
   return 0;
