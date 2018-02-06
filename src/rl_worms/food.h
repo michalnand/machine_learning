@@ -28,7 +28,7 @@ class Food
 
     float eat(float x, float y);
 
-    std::vector<float> state(float x, float y);
+    std::vector<float> state(float x, float y, float theta_ofs);
 
   private:
     void create();

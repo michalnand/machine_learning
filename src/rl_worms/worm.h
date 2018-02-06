@@ -12,9 +12,15 @@ struct sWormElement
 class Worm
 {
   public:
-    float x, y;
+
+    float x, y, theta;
 
   private:
+
+    float left_speed;
+    float right_speed;
+    float inertia;
+
     unsigned int length;
     float r, g, b;
 
@@ -30,7 +36,8 @@ class Worm
               float r, float g, float b,
               Visualisation *visualisation);
 
-    void move(float dx, float dy);
+    void move(unsigned int action_id);
+    void respawn();
     void paint();
 };
 

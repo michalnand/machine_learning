@@ -16,7 +16,7 @@ int main()
 
   sRLHyperParameters agent_hyperparameters;
   agent_hyperparameters.path_max_length = 100;
-  agent_hyperparameters.gamma = 0.9;
+  agent_hyperparameters.gamma = 0.95;
   agent_hyperparameters.epsilon = 0.2;
   agent_hyperparameters.path_epochs_count = 10;
 
@@ -38,7 +38,7 @@ int main()
   nn_init.hyperparameters.dropout = 0.0;
   nn_init.hyperparameters.lambda = 0.000000001;
 
-  nn_init.hidden_layers.push_back(16);
+  nn_init.hidden_layers.push_back(8);
 
   RL_FNN_Agent agent(&env, agent_hyperparameters, nn_init);
 

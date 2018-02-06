@@ -54,10 +54,11 @@ float Food::eat(float x, float y)
     dist+= (y - food[i].y)*(y - food[i].y);
     dist = sqrt(dist);
 
-    if (dist < food_size*2)
+    if (dist < food_size*2.0)
     {
       food[i].active = false;
       result = 1.0;
+      break;
     }
   }
 
@@ -73,18 +74,18 @@ float Food::eat(float x, float y)
   return result;
 }
 
-std::vector<float> Food::state(float x, float y)
+std::vector<float> Food::state(float x, float y, float theta_ofs)
 {
-  unsigned int sensors_count = 8;
+  unsigned int sensors_count = 16;
 
   std::vector<float> result;
   result.resize(sensors_count);
 
-  float r = food_size*2.0;
+  float r = food_size*0.1;
 
   for (unsigned int i = 0; i < sensors_count; i++)
   {
-    float theta = (3.141592654*i)/sensors_count;
+    float theta = theta_ofs + (3.141592654*i)/sensors_count;
     float x_pos = x + r*cos(theta);
     float y_pos = y + r*sin(theta);
 

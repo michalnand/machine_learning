@@ -1,6 +1,7 @@
 #include "worms_arena.h"
 #include <stdio.h>
 #include <math_.h>
+#include <vpu.h>
 
 WormsArena::WormsArena()
       :IRLEnvironment()
@@ -31,36 +32,53 @@ int WormsArena::init()
   update_state();
   iteration = 0;
 
-  food.init(30, &gl_visualisation);
-  worm.init(x, y, 50, 1.0, 0.0, 0.0, &gl_visualisation);
+  food.init(50, &gl_visualisation);
+  worm.init(x, y, 20, 1.0, 0.0, 0.0, &gl_visualisation);
+
+  score_filtered = 0.0;
 
   return 0;
 }
 
 void WormsArena::do_action(unsigned int action_id)
 {
-  if (math.abs(math.rnd()) < 0.01)
-  {
-    dx = math.rnd()*0.01;
-    dy = math.rnd()*0.01;
-  }
-  
-  worm.move(dx, dy);
+/*
+  std::vector<float> sensors = food.state(worm.x, worm.y, worm.theta);
 
+  unsigned int max_idx = vpu.argmax(&sensors[0], sensors.size());
+
+  action_id = 0;
+  if (max_idx < 0.1*sensors.size())
+    action_id = 2;
+  if (max_idx > 0.9*sensors.size())
+    action_id = 1;
+
+  if (math.abs(math.rnd()) < 0.03)
+    action_id = math.rand()%3;
+  */
+  worm.move(action_id);
+
+  reward = 0.0;
   if (
-      (math.abs(worm.x) > 1.5)||
-      (math.abs(worm.y) > 1.5) )
+      (math.abs(worm.x) > 2.0)||
+      (math.abs(worm.y) > 2.0) )
   {
-    worm.x = math.rnd();
-    worm.y = math.rnd();
+    worm.respawn();
     reward = -1.0;
   }
 
   float res = food.eat(worm.x, worm.y);
   if (res > 0.0)
-    reward = 1.0;
+    reward+= 0.1;
 
   score+= reward;
+  iteration++;
+
+  float k = 0.9999;
+  score_filtered = k*score_filtered + (1.0 - k)*reward;
+
+  state.state = food.state(worm.x, worm.y, worm.theta);
+
   visualisation();
 }
 
@@ -73,13 +91,14 @@ void WormsArena::visualisation()
 
   std::string info;
   info+= "score = " + std::to_string(score);
+  info+= "  score_filtered = " + std::to_string(score_filtered);
 
   if (score < 0.0)
     gl_visualisation.set_color(0.0, 0.0, 1.0);
   else
     gl_visualisation.set_color(1.0, 0.0, 0.0);
 
-  gl_visualisation.print(0, -1, -3.0, info);
+  gl_visualisation.print(-1.2, -1, -3.0, info);
 
   gl_visualisation.finish();
 }

@@ -10,10 +10,11 @@
 class WormsArena: public IRLEnvironment
 {
   protected:
+    float score_filtered;
     unsigned int iteration;
     float x, y;
     float dx, dy;
-    
+
     sStateGeometry geometry;
 
     Visualisation gl_visualisation;
