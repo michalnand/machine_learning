@@ -31,7 +31,6 @@ int main()
     timer.sleep_ms(50);
   }
 */
-
   /*
   RL_FNN_Agent_Extended agent(&env, "my_agent");
 
@@ -50,7 +49,7 @@ int main()
     iteration++;
   }
   */
-
+ 
   RL_FNN_Agent_Extended agent(&env, "agent_trained");
 
   while (1)
