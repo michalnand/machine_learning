@@ -89,7 +89,7 @@ void Arcade::do_action(unsigned int action_id)
   score_filtered = k*score_filtered + (1.0 - k)*reward;
 
   iteration++;
-  
+
   visualisation();
 }
 

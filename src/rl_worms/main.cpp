@@ -44,9 +44,7 @@ int main()
 
 
   nn_init.hidden_layers.push_back(8);
-  /*
-  nn_init.hidden_layers.push_back(8);
-*/
+
 
   RL_FNN_Agent agent(&env, agent_hyperparameters, nn_init);
 
