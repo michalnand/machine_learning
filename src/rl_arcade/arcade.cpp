@@ -16,10 +16,10 @@ Arcade::~Arcade()
 
 int Arcade::init()
 {
-  obstacle_density = 0.05;
+  obstacle_density = 0.1;
   actions_count = 2;
 
-  geometry.w = 16;
+  geometry.w = 19;
   geometry.h = 5;
   geometry.d = 1;
 
@@ -88,6 +88,8 @@ void Arcade::do_action(unsigned int action_id)
   float k = 0.999;
   score_filtered = k*score_filtered + (1.0 - k)*reward;
 
+  iteration++;
+  
   visualisation();
 }
 
@@ -96,7 +98,7 @@ void Arcade::visualisation()
   gl_visualisation.start();
 
   float x_ofs = 0.0;
-  float y_ofs = 0.5;
+  float y_ofs = 1.0;
   float z_ofs = -3.0;
   float size = 0.1;
 
@@ -144,6 +146,9 @@ void Arcade::visualisation()
   gl_visualisation.print(-1.2, -1, -3.0, info);
 
   gl_visualisation.finish();
+
+  printf("%u : %6.3f %6.5f\n", iteration, score, score_filtered);
+
 }
 
 void Arcade::update_state()
