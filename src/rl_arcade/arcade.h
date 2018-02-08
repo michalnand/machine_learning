@@ -14,10 +14,9 @@ class Arcade: public IRLEnvironment
     sStateGeometry geometry;
 
     Visualisation gl_visualisation;
-
-    unsigned int iteration;
-    float score_filtered;
     float obstacle_density;
+    unsigned int iteration;
+    
   public:
     Arcade();
     ~Arcade();

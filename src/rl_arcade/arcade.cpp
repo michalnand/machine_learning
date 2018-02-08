@@ -38,7 +38,7 @@ int Arcade::init()
   state.init(geometry);
 
   iteration = 0;
-  score_filtered = 0.0;
+
 
   update_state();
   return 0;
@@ -72,23 +72,26 @@ void Arcade::do_action(unsigned int action_id)
 
   reward = 0.0;
   if (screen[y][x] < -0.99)
+  {
     reward = -1.0;
+    add_wrong();
+  }
   else
   {
     for (unsigned int i = 0; i < geometry.h; i++)
       if (screen[i][x] < -0.99)
       {
         reward = 1.0/(geometry.h-2);
+
+        add_best();
         break;
       }
   }
 
-  score+= reward;
-
-  float k = 0.999;
-  score_filtered = k*score_filtered + (1.0 - k)*reward;
+  add_score(reward);
 
   iteration++;
+
 
   visualisation();
 }
@@ -137,17 +140,26 @@ void Arcade::visualisation()
                                    b);
     }
 
-  std::string info;
-  info+= "score = " + std::to_string(score);
-  info+= "  score_filtered = " + std::to_string(score_filtered);
+  std::string s_summary;
+  std::string s_best_total;
+  std::string s_best_now;
+
+  s_summary+= "score = " + std::to_string(get_score());
+  s_best_total+= "  best total = " + std::to_string(get_best_total()*100.0) + "%";
+  s_best_now  += "  best now   = " + std::to_string(get_best_now()*100.0) + "%";
 
 
   gl_visualisation.set_color(1.0, 1.0, 0.0);
-  gl_visualisation.print(-1.2, -1, -3.0, info);
+
+  gl_visualisation.print(-1.2, -0.7, z_ofs, s_summary);
+  gl_visualisation.print(-1.2, -0.9, z_ofs, s_best_total);
+  gl_visualisation.print(-1.2, -1.0, z_ofs, s_best_now);
+
+
 
   gl_visualisation.finish();
 
-  printf("%u : %6.3f %6.5f\n", iteration, score, score_filtered);
+  printf("%u : %6.3f %6.5f %6.5f %%\n", iteration, get_score(), get_score_filtered(), get_best_now()*100.0);
 
 }
 

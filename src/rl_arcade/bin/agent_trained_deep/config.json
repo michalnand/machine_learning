@@ -2,7 +2,8 @@
 	"activation_function" : "RELU",
 	"hidden_layers" : 
 	[
-		100
+		32,
+		16
 	],
 	"hyperparameters" : 
 	{
@@ -16,6 +17,7 @@
 	[
 		null,
 		"agent_trained/layer_1.bin",
-		"agent_trained/layer_2.bin"
+		"agent_trained/layer_2.bin",
+		"agent_trained/layer_3.bin"
 	]
 }
