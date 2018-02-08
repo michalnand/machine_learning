@@ -31,7 +31,7 @@ int main()
     timer.sleep_ms(50);
   }
 */
-  /*
+
   RL_FNN_Agent_Extended agent(&env, "my_agent");
 
   unsigned int iteration = 0;
@@ -48,8 +48,8 @@ int main()
 
     iteration++;
   }
-  */
- 
+
+/*
   RL_FNN_Agent_Extended agent(&env, "agent_trained");
 
   while (1)
@@ -58,7 +58,7 @@ int main()
     env.visualisation();
     timer.sleep_ms(100);
   }
-
+*/
   printf("program done\n");
 
   return 0;
