@@ -1,0 +1,24 @@
+{
+	"activation_function" : "RELU",
+	"features_size" : 25,
+	"hidden_layers" : 
+	[
+		64
+	],
+	"hyperparameters" : 
+	{
+		"dropout" : 0.20000000298023224,
+		"init_weight_range" : 0.25,
+		"lambda" : 1.0000000116860974e-07,
+		"learning_rate" : 9.9999997473787516e-05
+	},
+	"input_size" : 81,
+	"weights_file" : 
+	[
+		null,
+		"autoencoder_trained/layer_1.bin",
+		"autoencoder_trained/layer_2.bin",
+		"autoencoder_trained/layer_3.bin",
+		"autoencoder_trained/layer_4.bin"
+	]
+}

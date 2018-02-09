@@ -2,11 +2,14 @@
 #include <iostream>
 
 #include <math_.h>
+#include <vpu.h>
 #include <log.h>
 #include <timer.h>
 #include <vector>
 
 #include <fnn_extended.h>
+#include <fnn_autoencoder.h>
+
 #include <fnn_autoencoder_extended.h>
 
 #include <dataset_landsat.h>
@@ -16,25 +19,29 @@
 
 void network_train(CDatasetInterface *dataset)
 {
-  sFNNInit fnn_init;
+/*
+  sFNNAutoencoderInit fnn_init;
 
   fnn_init.input_size = dataset->get_input_size();
-  fnn_init.output_size = 20;
-  fnn_init.activation_function = FNN_LRELU_LAYER;
+  fnn_init.features_size = 20;
+  fnn_init.activation_function = FNN_RELU_LAYER;
 
   fnn_init.hyperparameters.learning_rate = 0.0001;
-  fnn_init.hyperparameters.init_weight_range = 0.1;
-  fnn_init.hyperparameters.dropout = 0.3;
+  fnn_init.hyperparameters.init_weight_range = 0.01;
+  fnn_init.hyperparameters.dropout = 0.1;
+  fnn_init.hyperparameters.lambda = 0.0000001;
 
-  //fnn_init.hidden_layers.push_back(64);
-  // fnn_init.hidden_layers.push_back(32);
-
-
-  FNNAutoencoder nn;
+  fnn_init.hidden_layers.push_back(100);
 
   nn.init(fnn_init);
+*/
 
-  unsigned int learning_iterations_max = dataset->get_training_size()*10;
+  FNNAutoencoderExtended nn;
+
+  nn.load_from_file("autoencoder", dataset->get_input_size());
+
+
+  unsigned int learning_iterations_max = dataset->get_training_size()*100;
 
   timer.start();
   for (unsigned int iteration = 0; iteration < learning_iterations_max; iteration++)
@@ -50,6 +57,7 @@ void network_train(CDatasetInterface *dataset)
   timer.stop();
 
   printf("training total time %f [s]\n", timer.get_duration()/1000.0);
+  nn.save_to_file("autoencoder_trained");
 
 
 
@@ -60,12 +68,17 @@ void network_train(CDatasetInterface *dataset)
   nn_output.resize(dataset->get_input_size());
 
   timer.start();
+
+  float error_sum = 0.0;
   for (unsigned int idx = 0; idx < testing_items_count; idx++)
   {
     sDatasetItem item;
     item = dataset->testing[idx];
 
     nn.forward(&nn_output[0], &item.input[0]);
+
+    float error = vpu.vector_dist(&nn_output[0], &item.input[0], nn_output.size());
+    error_sum+= error/nn_output.size();
 
     if ((idx%100) == 0)
     {
@@ -85,10 +98,11 @@ void network_train(CDatasetInterface *dataset)
       output_image.save(output_image_file_name);
     }
 
-    printf("done %6.3f %%\n", idx*100.0/testing_items_count);
+    printf("done %6.3f %%, error %f\n", idx*100.0/testing_items_count, error_sum/testing_items_count);
   }
   timer.stop();
 
+  printf("total error %f\n", error_sum/testing_items_count);
   printf("testing time %f [s]\n", timer.get_duration()/1000.0);
 }
 int main()
@@ -100,6 +114,7 @@ int main()
                         "/home/michal/dataset/mnist/t10k-images.idx3-ubyte",
                         "/home/michal/dataset/mnist/t10k-labels.idx1-ubyte");
 */
+
   CDatasetMnistTiny dataset("/home/michal/dataset/mnist_tiny/training.bin",
                             "/home/michal/dataset/mnist_tiny/testing.bin");
 
