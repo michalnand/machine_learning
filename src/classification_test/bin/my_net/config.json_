@@ -1,0 +1,16 @@
+{
+  "type" : "fnn",
+
+  "supervised_epoch_count"    : 100,
+
+  "hyperparameters":
+  {
+    "learning_rate"       : 0.0001,
+    "init_weight_range"   : 0.01,
+    "dropout"             : 0.1,
+    "lambda"              : 0.000000005
+  },
+
+  "activation_function"   : "RELU",
+  "hidden_layers"         : [100, 32]
+}

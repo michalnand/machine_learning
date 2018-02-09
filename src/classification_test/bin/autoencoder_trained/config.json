@@ -1,9 +1,9 @@
 {
 	"activation_function" : "RELU",
-	"features_size" : 25,
+	"features_size" : 50,
 	"hidden_layers" : 
 	[
-		64
+		100
 	],
 	"hyperparameters" : 
 	{

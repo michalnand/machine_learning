@@ -19,32 +19,17 @@
 
 void network_train(CDatasetInterface *dataset)
 {
-/*
-  sFNNAutoencoderInit fnn_init;
-
-  fnn_init.input_size = dataset->get_input_size();
-  fnn_init.features_size = 20;
-  fnn_init.activation_function = FNN_RELU_LAYER;
-
-  fnn_init.hyperparameters.learning_rate = 0.0001;
-  fnn_init.hyperparameters.init_weight_range = 0.01;
-  fnn_init.hyperparameters.dropout = 0.1;
-  fnn_init.hyperparameters.lambda = 0.0000001;
-
-  fnn_init.hidden_layers.push_back(100);
-
-  nn.init(fnn_init);
-*/
-
   FNNAutoencoderExtended nn;
 
   nn.load_from_file("autoencoder", dataset->get_input_size());
 
 
-  unsigned int learning_iterations_max = dataset->get_training_size()*100;
+  nn.set_epoch_size(dataset->get_training_size());
+
 
   timer.start();
-  for (unsigned int iteration = 0; iteration < learning_iterations_max; iteration++)
+  unsigned int iteration = 0;
+  while (nn.training_done() != true)
   {
     sDatasetItem item;
     item = dataset->get_random_training(0.01);
@@ -52,7 +37,7 @@ void network_train(CDatasetInterface *dataset)
     nn.learn(&item.input[0]);
 
     if ((iteration%100) == 0)
-      printf("learning done %6.3f %%\n", iteration*100.0/learning_iterations_max);
+      printf("learning done %6.3f %%\n", 100.0*nn.get_training_progress());
   }
   timer.stop();
 
