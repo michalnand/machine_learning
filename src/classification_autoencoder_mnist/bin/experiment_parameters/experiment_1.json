@@ -1,0 +1,5 @@
+{
+  "net_parameters": "networks/net_1",
+  "net_parameters_trained": "networks/net_1_trained",
+  "result_dir"    : "networks/net_1_result"
+}

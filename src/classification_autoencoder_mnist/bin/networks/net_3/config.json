@@ -1,0 +1,29 @@
+{
+  "type" : "heterogenous",
+
+  "unsupervised_epoch_count"  : 50,
+  "supervised_epoch_count"    : 100,
+
+  "unsupervised_hyperparameters":
+  {
+    "learning_rate"       : 0.0001,
+    "init_weight_range"   : 0.25,
+    "dropout"             : 0.2,
+    "lambda"              : 0.00000005
+  },
+
+  "supervised_hyperparameters":
+  {
+    "learning_rate"       : 0.0001,
+    "init_weight_range"   : 0.01,
+    "dropout"             : 0.1,
+    "lambda"              : 0.000000005
+  },
+
+  "activation_function"   : "RELU",
+
+  "features_size"         : 50,
+  "u_hidden_layers"       : [256],
+
+  "hidden_layers"         : [ ]
+}
