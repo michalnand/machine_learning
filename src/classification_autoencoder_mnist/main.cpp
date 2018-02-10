@@ -19,6 +19,8 @@ int main()
   experiments.push_back(new ClassificationAutoencoderExperiment("experiment_parameters/experiment_2.json", &dataset));
   experiments.push_back(new ClassificationAutoencoderExperiment("experiment_parameters/experiment_3.json", &dataset));
   experiments.push_back(new ClassificationAutoencoderExperiment("experiment_parameters/experiment_4.json", &dataset));
+  experiments.push_back(new ClassificationAutoencoderExperiment("experiment_parameters/experiment_5.json", &dataset));
+  experiments.push_back(new ClassificationAutoencoderExperiment("experiment_parameters/experiment_6.json", &dataset));
 
   for (unsigned int i = 0; i < experiments.size(); i++)
     experiments[i]->run();

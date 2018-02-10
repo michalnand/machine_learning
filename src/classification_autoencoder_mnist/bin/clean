@@ -72,3 +72,35 @@ rm networks/net_4_trained/supervised/*.json -f
 rm networks/net_4_trained/supervised/*.log -f
 rm networks/net_4_trained/supervised/*.bin -f
 rm networks/net_4_trained/supervised/*.png -f
+
+
+
+
+rm networks/net_5_result/progress.log -f
+rm networks/net_5_result/result.json -f
+rm networks/net_5_result/result.txt -f
+rm networks/net_5_result/*.png -f
+rm networks/net_5_trained/unsupervised/*.json -f
+rm networks/net_5_trained/unsupervised/*.log -f
+rm networks/net_5_trained/unsupervised/*.bin -f
+rm networks/net_5_trained/unsupervised/*.png -f
+rm networks/net_5_trained/supervised/*.json -f
+rm networks/net_5_trained/supervised/*.log -f
+rm networks/net_5_trained/supervised/*.bin -f
+rm networks/net_5_trained/supervised/*.png -f
+
+
+
+
+rm networks/net_6_result/progress.log -f
+rm networks/net_6_result/result.json -f
+rm networks/net_6_result/result.txt -f
+rm networks/net_6_result/*.png -f
+rm networks/net_6_trained/unsupervised/*.json -f
+rm networks/net_6_trained/unsupervised/*.log -f
+rm networks/net_6_trained/unsupervised/*.bin -f
+rm networks/net_6_trained/unsupervised/*.png -f
+rm networks/net_6_trained/supervised/*.json -f
+rm networks/net_6_trained/supervised/*.log -f
+rm networks/net_6_trained/supervised/*.bin -f
+rm networks/net_6_trained/supervised/*.png -f
