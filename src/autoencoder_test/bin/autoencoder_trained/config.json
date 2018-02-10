@@ -9,7 +9,7 @@
 	{
 		"dropout" : 0.20000000298023224,
 		"init_weight_range" : 0.25,
-		"lambda" : 1.0000000116860974e-07,
+		"lambda" : 9.9999999392252903e-09,
 		"learning_rate" : 9.9999997473787516e-05
 	},
 	"input_size" : 81,

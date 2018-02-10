@@ -62,7 +62,7 @@ void hn_network_train(CDatasetInterface *dataset)
   {
     sDatasetItem item;
     item = dataset->get_random_training(0.01);
-
+ 
     nn.learn_unsupervised(&item.input[0]);
 
     if ((iteration%1000) == 0)
@@ -70,6 +70,7 @@ void hn_network_train(CDatasetInterface *dataset)
     iteration++;
   }
 
+  nn.fnn_update_weights();
   nn.save_to_file("my_net_trained");
 
   while (nn.supervised_training_done() != true)
@@ -148,7 +149,6 @@ CDatasetMnistTiny dataset("/home/michal/dataset/mnist_tiny/training.bin",
 
  hn_network_train(&dataset);
 
-//   network_train(&dataset);
  network_test(&dataset);
 
   printf("program done\n");
