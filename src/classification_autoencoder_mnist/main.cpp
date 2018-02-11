@@ -9,7 +9,7 @@ int main()
 {
   printf("starting\n");
 
-  CDatasetMnistTiny dataset("/home/michal/dataset/mnist_tiny/training.bin",
+   DatasetMnistTiny dataset("/home/michal/dataset/mnist_tiny/training.bin",
                             "/home/michal/dataset/mnist_tiny/testing.bin");
 
   std::vector<ClassificationAutoencoderExperiment*> experiments;
