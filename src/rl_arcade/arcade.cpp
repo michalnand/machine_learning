@@ -19,8 +19,8 @@ int Arcade::init()
   obstacle_density = 0.1;
   actions_count = 2;
 
-  geometry.w = 19;
-  geometry.h = 5;
+  geometry.w = 9;
+  geometry.h = 9;
   geometry.d = 1;
 
   x = 1;
@@ -175,7 +175,8 @@ void Arcade::update_state()
 
   if (math.abs(math.rnd()) < obstacle_density)
   {
-    unsigned int obstacle_height = math.rand()%(geometry.h-2);
+    unsigned int tmp = geometry.h*0.75;
+    unsigned int obstacle_height = math.rand()%tmp;
     for (unsigned int j = 0; j < obstacle_height; j++)
       screen[j][geometry.w-1] = -1.0;
   }

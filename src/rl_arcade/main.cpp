@@ -16,23 +16,7 @@ int main()
 
   Arcade env;
 
-/*
-  while (1)
-  {
-    int key = getch();
-    unsigned int action;
-    if (key == ' ')
-      action = 1;
-    else
-      action = 0;
 
-    env.do_action(action);
-
-    timer.sleep_ms(50);
-  }
-*/
-
-/*
   RL_FNN_Agent_Extended agent(&env, "my_agent");
 
   unsigned int iteration = 0;
@@ -50,7 +34,7 @@ int main()
     iteration++;
   }
 
-*/
+/*
   RL_FNN_Agent_Extended agent(&env, "agent_trained_deep");
 
   while (1)
@@ -59,7 +43,7 @@ int main()
     env.visualisation();
     //timer.sleep_ms(10);
   }
-
+*/
 
   printf("program done\n");
 

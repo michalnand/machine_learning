@@ -1,15 +1,16 @@
 {
-  "epoch_count"  : 100,
+  "epoch_count"     : 100,
+  "epoch_per_slice" : 20,
 
   "hyperparameters":
   {
     "learning_rate"       : 0.0001,
     "init_weight_range"   : 0.25,
     "dropout"             : 0.2,
-    "lambda"              : 0.00000001
+    "lambda"              : 0.00000002
   },
 
-  "features_size"         : 50,
+  "features_size"         : 32,
   "activation_function"   : "RELU",
-  "hidden_layers"         : [100]
+  "hidden_layers"         : [100, 50]
 }

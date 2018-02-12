@@ -1,15 +1,16 @@
 {
 	"activation_function" : "RELU",
-	"features_size" : 50,
+	"features_size" : 32,
 	"hidden_layers" : 
 	[
-		100
+		100,
+		50
 	],
 	"hyperparameters" : 
 	{
 		"dropout" : 0.20000000298023224,
 		"init_weight_range" : 0.25,
-		"lambda" : 9.9999999392252903e-09,
+		"lambda" : 1.9999999878450581e-08,
 		"learning_rate" : 9.9999997473787516e-05
 	},
 	"input_size" : 81,
@@ -19,6 +20,8 @@
 		"autoencoder_trained/layer_1.bin",
 		"autoencoder_trained/layer_2.bin",
 		"autoencoder_trained/layer_3.bin",
-		"autoencoder_trained/layer_4.bin"
+		"autoencoder_trained/layer_4.bin",
+		"autoencoder_trained/layer_5.bin",
+		"autoencoder_trained/layer_6.bin"
 	]
 }

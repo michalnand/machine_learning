@@ -1,8 +1,9 @@
 {
   "type" : "heterogenous",
 
-  "unsupervised_epoch_count"  : 20,
+  "unsupervised_epoch_count"  : 0,
   "supervised_epoch_count"    : 100,
+  "epoch_per_slice" : 20,
 
   "unsupervised_hyperparameters":
   {
@@ -22,8 +23,8 @@
 
   "activation_function"   : "RELU",
 
-  "features_size"         : 50,
-  "u_hidden_layers"       : [256],
+  "features_size"         : 40,
+  "u_hidden_layers"       : [256, 64],
 
   "hidden_layers"         : [ ]
 }

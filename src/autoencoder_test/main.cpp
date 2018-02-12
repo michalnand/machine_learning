@@ -17,15 +17,12 @@
 #include <dataset_mnist_tiny.h>
 
 
-void network_train(CDatasetInterface *dataset)
+void network_train(DatasetInterface *dataset)
 {
   FNNAutoencoderExtended nn;
 
   nn.load_from_file("autoencoder", dataset->get_input_size());
-
-
   nn.set_epoch_size(dataset->get_training_size());
-
 
   timer.start();
   unsigned int iteration = 0;
@@ -37,7 +34,14 @@ void network_train(CDatasetInterface *dataset)
     nn.learn(&item.input[0]);
 
     if ((iteration%100) == 0)
-      printf("learning done %6.3f %%\n", 100.0*nn.get_training_progress());
+      printf("learning done %6.3f %% depth %u\n", 100.0*nn.get_training_progress(), nn.get_current_depth());
+
+    if ((iteration%dataset->get_training_size()) == 0)
+    {
+      nn.save_to_file("autoencoder_trained");
+    }
+
+    iteration++;
   }
   timer.stop();
 
@@ -73,8 +77,8 @@ void network_train(CDatasetInterface *dataset)
       std::string input_image_file_name = "images/"+std::to_string(idx)+"_in.png";
       std::string output_image_file_name = "images/"+std::to_string(idx)+"_out.png";
 
-      CImage input_image(width, height);
-      CImage output_image(width, height);
+      Image input_image(width, height);
+      Image output_image(width, height);
 
       input_image.from_vector_grayscale(item.input);
       output_image.from_vector_grayscale(nn_output);
@@ -90,17 +94,19 @@ void network_train(CDatasetInterface *dataset)
   printf("total error %f\n", error_sum/testing_items_count);
   printf("testing time %f [s]\n", timer.get_duration()/1000.0);
 }
+
+
 int main()
 {
   math.srand(time(NULL));
 /*
-  CDatasetMnist dataset("/home/michal/dataset/mnist/train-images.idx3-ubyte",
+  DatasetMnist dataset("/home/michal/dataset/mnist/train-images.idx3-ubyte",
                         "/home/michal/dataset/mnist/train-labels.idx1-ubyte",
                         "/home/michal/dataset/mnist/t10k-images.idx3-ubyte",
                         "/home/michal/dataset/mnist/t10k-labels.idx1-ubyte");
 */
 
-  CDatasetMnistTiny dataset("/home/michal/dataset/mnist_tiny/training.bin",
+  DatasetMnistTiny dataset("/home/michal/dataset/mnist_tiny/training.bin",
                             "/home/michal/dataset/mnist_tiny/testing.bin");
 
   network_train(&dataset);

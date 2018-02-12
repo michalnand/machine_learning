@@ -3,6 +3,7 @@
 
   "unsupervised_epoch_count"  : 100,
   "supervised_epoch_count"    : 100,
+  "epoch_per_slice" : 20,
 
   "unsupervised_hyperparameters":
   {
@@ -14,7 +15,7 @@
 
   "supervised_hyperparameters":
   {
-    "learning_rate"       : 0.0005,
+    "learning_rate"       : 0.0001,
     "init_weight_range"   : 0.01,
     "dropout"             : 0.1,
     "lambda"              : 0.000000005
@@ -22,8 +23,8 @@
 
   "activation_function"   : "RELU",
 
-  "features_size"         : 50,
-  "u_hidden_layers"       : [256],
+  "features_size"         : 40,
+  "u_hidden_layers"       : [256, 64],
 
-  "hidden_layers"         : [ ]
+  "hidden_layers"         : [40]
 }
