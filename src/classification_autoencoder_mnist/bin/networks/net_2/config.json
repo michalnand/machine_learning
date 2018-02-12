@@ -1,8 +1,8 @@
 {
   "type" : "heterogenous",
 
-  "unsupervised_epoch_count"  : 0,
-  "supervised_epoch_count"    : 100,
+  "unsupervised_epoch_count"  : 100,
+  "supervised_epoch_count"    : 0,
   "epoch_per_slice" : 20,
 
   "unsupervised_hyperparameters":

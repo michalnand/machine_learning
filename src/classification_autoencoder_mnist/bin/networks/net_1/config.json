@@ -23,7 +23,7 @@
 
   "activation_function"   : "RELU",
 
-  "features_size"         : 40,
+  "features_size"         : 64,
   "u_hidden_layers"       : [256],
 
   "hidden_layers"         : [ ]

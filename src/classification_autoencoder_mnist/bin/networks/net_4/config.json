@@ -26,5 +26,5 @@
   "features_size"         : 40,
   "u_hidden_layers"       : [256, 64],
 
-  "hidden_layers"         : [40]
+  "hidden_layers"         : [50]
 }
