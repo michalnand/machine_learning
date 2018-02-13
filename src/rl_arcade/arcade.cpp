@@ -19,10 +19,10 @@ int Arcade::init()
   obstacle_density = 0.1;
   actions_count = 2;
 
-  geometry.w = 9;
-  geometry.h = 9;
+  geometry.w = 19;
+  geometry.h = 5;
   geometry.d = 1;
-
+ 
   x = 1;
   y = 0;
   move_state = 0;

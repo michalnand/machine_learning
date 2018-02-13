@@ -10,14 +10,14 @@
 		"init_weight_range" : 0.10000000149011612,
 		"learning_rate" : 0.00050000002374872565
 	},
-	"input_size" : 81,
+	"input_size" : 95,
 	"output_size" : 2,
 	"supervised_epoch_count" : 0,
 	"type" : "fnn",
 	"weights_file" : 
 	[
 		null,
-		"agent_trained/layer_1.bin",
-		"agent_trained/layer_2.bin"
+		"fnn_agent_trained/layer_1.bin",
+		"fnn_agent_trained/layer_2.bin"
 	]
 }
