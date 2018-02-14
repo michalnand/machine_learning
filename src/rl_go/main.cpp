@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include <arcade.h>
+#include <go.h>
 #include <i_rl_agent.h>
 #include <fnn_rl_agent.h>
 #include <hfnn_rl_agent.h>
@@ -17,7 +17,26 @@ int main()
 
   math.srand(time(NULL));
 
-  Arcade env;
+  GO env(19);
+
+
+  while (1)
+  {
+    unsigned int action;
+
+    action = rand()%env.get_actions_count();
+    env.set_active_player(GO_PLAYER_BLACK);
+    env.do_action(action);
+    env.visualisation();
+
+    env.set_active_player(GO_PLAYER_WHITE);
+    action = rand()%env.get_actions_count();
+    env.do_action(action);
+    env.visualisation();
+
+
+    timer.sleep_ms(10);
+  }
 
   /*
   while (1)
@@ -34,39 +53,6 @@ int main()
     timer.sleep_ms(100);
   }
   */
-
-/*
-  RL_HFNN_Agent agent(&env, "fnn");
-
-
-  for (unsigned int i = 0; i < 200000; i++)
-  {
-    agent.process_learn();
-    env.visualisation();
-    if ((iteration%100000) == 0)
-      agent.save("fnn_trained");
-
-    if ((iteration%1000) == 0)
-      env.log();
-    iteration++;
-  }
-
-  agent.save("fnn_trained");
-*/
-
-
-  RL_FNN_Agent agent(&env, "fnn_trained/supervised");
-
-  for (unsigned int i = 0; i < 40000; i++)
-  {
-    agent.process();
-    env.visualisation();
-    //timer.sleep_ms(10);
-    if ((iteration%1000) == 0)
-      env.log();
-    iteration++;
-  }
-
 
   printf("program done\n");
 
