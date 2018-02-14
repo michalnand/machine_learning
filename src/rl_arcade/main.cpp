@@ -13,44 +13,60 @@
 
 int main()
 {
+  unsigned int iteration = 0;
+
   math.srand(time(NULL));
 
   Arcade env;
 
-  RL_HFNN_Agent agent(&env, "hybrid_fnn");
+  /*
+  while (1)
+  {
+    int key = getch();
+    unsigned int action = 0;
+
+    if (key == ' ')
+      action = 1;
+
+    env.do_action(action);
+    env.visualisation();
+
+    timer.sleep_ms(100);
+  }
+  */
+
+/*
+  RL_HFNN_Agent agent(&env, "fnn");
 
 
-  unsigned int iteration = 0;
   for (unsigned int i = 0; i < 200000; i++)
   {
     agent.process_learn();
     env.visualisation();
-
-/*
-    if ((iteration%300000) < 1000)
-      timer.sleep_ms(20);
-*/
     if ((iteration%100000) == 0)
-      agent.save("hybrid_fnn_trained");
+      agent.save("fnn_trained");
 
     if ((iteration%1000) == 0)
       env.log();
     iteration++;
   }
 
-  agent.save("hybrid_fnn_trained");
+  agent.save("fnn_trained");
+*/
 
 
-/*
-  RL_FNN_Agent_Extended agent(&env, "agent_trained_deep");
+  RL_FNN_Agent agent(&env, "fnn_trained/supervised");
 
-  while (1)
+  for (unsigned int i = 0; i < 40000; i++)
   {
     agent.process();
     env.visualisation();
     //timer.sleep_ms(10);
+    if ((iteration%1000) == 0)
+      env.log();
+    iteration++;
   }
-*/
+
 
   printf("program done\n");
 

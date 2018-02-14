@@ -32,3 +32,7 @@ plot 'layer_2_histogram.log' using 1:2 notitle with boxes
 
 set output 'layer_3_histogram.png'
 plot 'layer_3_histogram.log' using 1:2 notitle with boxes
+
+
+set output 'layer_4_histogram.png'
+plot 'layer_4_histogram.log' using 1:2 notitle with boxes

@@ -1,7 +1,7 @@
 {
   "type" : "heterogenous",
 
-  "unsupervised_epoch_count"  : 1000,
+  "unsupervised_epoch_count"  : 0,
   "supervised_epoch_count"    : 100,
   "epoch_per_slice" : 500,
 

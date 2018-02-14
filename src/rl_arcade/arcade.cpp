@@ -22,7 +22,7 @@ int Arcade::init()
   geometry.w = 19;
   geometry.h = 5;
   geometry.d = 1;
- 
+
   x = 1;
   y = 0;
   move_state = 0;
@@ -177,8 +177,17 @@ void Arcade::update_state()
   {
     unsigned int tmp = geometry.h*0.75;
     unsigned int obstacle_height = math.rand()%tmp;
-    for (unsigned int j = 0; j < obstacle_height; j++)
-      screen[j][geometry.w-1] = -1.0;
+
+    if (math.rand()%2)
+    {
+      for (unsigned int j = 0; j < obstacle_height; j++)
+        screen[j][geometry.w-1] = -1.0;
+    }
+    else
+    {
+      for (unsigned int j = 0; j < obstacle_height; j++)
+        screen[geometry.h - 1 - j][geometry.w-1] = -1.0;
+    }
   }
 
   unsigned int ptr = 0;

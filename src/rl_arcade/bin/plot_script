@@ -20,5 +20,15 @@ set yrange [*:*]
 
 
 set output 'learning_progress_rate.png'
-plot  'hybrid_01_progress.log' using 5 every ::100 title "AE [64, 32] + FNN [2]" with lines lw 2.0, \
-      'IRLEnvironment_progress.log' using 5 every ::::100 title "FNN [64, 32, 2]" with lines lw 2.0, \
+plot  'hybrid_01_progress.log' using 5 every ::100 title "AE [64, 32] + FNN [2]" with lines lw 2.0 lc rgb 'red', \
+      'fnn_01_progress.log' using 5 every ::::200 title "FNN [64, 32, 2]" with lines lw 2.0 lc rgb 'blue', \
+
+
+set output 'testing_progress_rate.png'
+plot  'hybrid_01_progress_testing.log' using 5  title "AE [64, 32] + FNN [2]" with lines lw 2.0 lc rgb 'red', \
+      'fnn_01_progress_testing.log' using 5  title "FNN [64, 32, 2]" with lines lw 2.0 lc rgb 'blue', \
+
+
+set output 'testing_score.png'
+plot  'hybrid_01_progress_testing.log' using 1  title "AE [64, 32] + FNN [2]" with lines lw 2.0 lc rgb 'red', \
+      'fnn_01_progress_testing.log' using 1  title "FNN [64, 32, 2]" with lines lw 2.0 lc rgb 'blue', \

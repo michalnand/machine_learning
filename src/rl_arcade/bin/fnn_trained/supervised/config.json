@@ -2,7 +2,8 @@
 	"activation_function" : "RELU",
 	"hidden_layers" : 
 	[
-		64
+		64,
+		32
 	],
 	"hyperparameters" : 
 	{
@@ -12,12 +13,13 @@
 	},
 	"input_size" : 95,
 	"output_size" : 2,
-	"supervised_epoch_count" : 0,
+	"supervised_epoch_count" : 1,
 	"type" : "fnn",
 	"weights_file" : 
 	[
 		null,
-		"fnn_agent_trained/layer_1.bin",
-		"fnn_agent_trained/layer_2.bin"
+		"fnn_trained/supervised/layer_1.bin",
+		"fnn_trained/supervised/layer_2.bin",
+		"fnn_trained/supervised/layer_3.bin"
 	]
 }
