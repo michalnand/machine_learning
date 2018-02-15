@@ -30,7 +30,7 @@ int GO::init(unsigned int board_size)
     }
   }
 
-  actions_count = board_size*board_size;
+  actions_count = board_size*board_size + 1; //+1 for pass
 
   state.geometry.w = board_size;
   state.geometry.h = board_size;
@@ -48,17 +48,20 @@ int GO::init(unsigned int board_size)
 
 void GO::do_action(unsigned int action_id)
 {
-  update_availible_moves();
-
-  if (availible_actions[action_id] != true)
+  if (availible_actions[action_id] != true) //illegal move
     return;
 
-  play_on_field(action_id);
+  if (action_id == (availible_actions.size()-1))  //PASS action, no state change
+    return;
 
-  update_liberty_count();
-  capture_stones();
+  int j = action_id/board_size;
+  int i = action_id%board_size;
+  play_on_field(j, i);
 
-  update_score();
+  update_liberty_count();   //compute liberty count
+  capture_stones();         //capture oponent stones
+
+  update_score();           //count score
 }
 
 void GO::visualisation()
@@ -98,17 +101,16 @@ void GO::visualisation()
 
   printf("\nscore %i %i\n", black_player_score, white_player_score);
   printf("\n\n\n");
+
+
+  //TODO paint nice board in opengl
 }
 
 void GO::set_active_player(unsigned int active_player)
 {
   this->active_player = active_player;
-}
 
-
-void GO::update_state()
-{
-
+  update_availible_moves();
 }
 
 void GO::set_random()
@@ -124,6 +126,11 @@ void GO::set_random()
 
       }
     }
+}
+
+void GO::update_state()
+{
+
 }
 
 void GO::update_liberty_count()
@@ -153,6 +160,28 @@ void GO::update_liberty_count()
           }
         }
     }
+}
+
+int GO::count_black_captured_stones()
+{
+  int result = 0;
+  for (unsigned int j = 0; j < board_size; j++)
+    for (unsigned int i = 0; i < board_size; i++)
+      if (board[j][i].stone == GO_BLACK_STONE)
+      if (board[j][i].liberty == 0)
+        result++;
+  return result;
+}
+
+int GO::count_white_captured_stones()
+{
+  int result = 0;
+  for (unsigned int j = 0; j < board_size; j++)
+    for (unsigned int i = 0; i < board_size; i++)
+      if (board[j][i].stone == GO_WHITE_STONE)
+      if (board[j][i].liberty == 0)
+        result++;
+  return result;
 }
 
 
@@ -223,30 +252,33 @@ int GO::stone_field_liberty(int j, int i)
 }
 
 
-int GO::max(int a, int b)
-{
-  if (a > b)
-    return a;
-  return b;
-}
+
 
 void GO::capture_stones()
 {
-  for (unsigned int j = 0; j < board_size; j++)
-    for (unsigned int i = 0; i < board_size; i++)
-    {
-      if (board[j][i].stone == GO_BLACK_STONE)
-      if (board[j][i].liberty == 0)
+  if (active_player == GO_PLAYER_BLACK)
+  {
+    for (unsigned int j = 0; j < board_size; j++)
+      for (unsigned int i = 0; i < board_size; i++)
       {
-        board[j][i].stone = GO_EMPTY_STONE;
+        if (board[j][i].stone == GO_WHITE_STONE)
+        if (board[j][i].liberty == 0)
+          board[j][i].stone = GO_EMPTY_STONE;
       }
+  }
 
-      if (board[j][i].stone == GO_WHITE_STONE)
-      if (board[j][i].liberty == 0)
+
+  if (active_player == GO_PLAYER_WHITE)
+  {
+    for (unsigned int j = 0; j < board_size; j++)
+      for (unsigned int i = 0; i < board_size; i++)
       {
-        board[j][i].stone = GO_EMPTY_STONE;
+        if (board[j][i].stone == GO_BLACK_STONE)
+        if (board[j][i].liberty == 0)
+          board[j][i].stone = GO_EMPTY_STONE;
       }
-    }
+  }
+
 }
 
 void GO::update_score()
@@ -264,10 +296,67 @@ void GO::update_score()
     }
 }
 
-void GO::play_on_field(unsigned int action_id)
+
+
+void GO::update_availible_moves()
 {
-  int j = action_id/board_size;
-  int i = action_id%board_size;
+  //play only on empty fields
+  for (unsigned int j = 0; j < board_size; j++)
+    for (unsigned int i = 0; i < board_size; i++)
+    {
+      int idx = position_to_action(j, i);
+      if (board[j][i].stone == GO_EMPTY_STONE)
+          availible_actions[idx] = true;
+      else
+        availible_actions[idx] = false;
+    }
+
+  //avoid suicide
+  for (unsigned int j = 0; j < board_size; j++)
+    for (unsigned int i = 0; i < board_size; i++)
+      if (board[j][i].stone == GO_EMPTY_STONE)
+      {
+        //try to play
+        play_on_field(j, i);
+
+        update_liberty_count();
+
+        //and check for suicide
+        int black_captured = count_black_captured_stones();
+        int white_captured = count_white_captured_stones();
+
+        if (active_player == GO_PLAYER_BLACK)
+        {
+          if (white_captured > 0)
+            availible_actions[position_to_action(j, i)] = true;
+          else
+          if (black_captured == 0)
+            availible_actions[position_to_action(j, i)] = true;
+        }
+
+        if (active_player == GO_PLAYER_WHITE)
+        {
+          if (black_captured > 0)
+            availible_actions[position_to_action(j, i)] = true;
+          else
+          if (white_captured == 0)
+            availible_actions[position_to_action(j, i)] = true;
+        }
+
+        //restore previous state
+        unplay_on_field(j, i);
+      }
+
+}
+
+int GO::position_to_action(int j, int i)
+{
+  return j*board_size + i;
+}
+
+void GO::play_on_field(int j, int i)
+{
+
 
   if (active_player == GO_PLAYER_BLACK)
     board[j][i].stone = GO_BLACK_STONE;
@@ -276,17 +365,19 @@ void GO::play_on_field(unsigned int action_id)
     board[j][i].stone = GO_WHITE_STONE;
 }
 
-void GO::update_availible_moves()
+void GO::unplay_on_field(int j, int i)
 {
-  for (unsigned int j = 0; j < availible_actions.size(); j++)
-    availible_actions[j] = true;
 
-  for (unsigned int j = 0; j < board_size; j++)
-    for (unsigned int i = 0; i < board_size; i++)
-    {
-      if (board[j][i].stone != GO_EMPTY_STONE)
-        availible_actions[j*board_size + i] = false;
-    }
+  if (active_player == GO_PLAYER_BLACK)
+    board[j][i].stone = GO_EMPTY_STONE;
 
-  //TODO avoid suicide
+  if (active_player == GO_PLAYER_WHITE)
+    board[j][i].stone = GO_EMPTY_STONE;
+}
+
+int GO::max(int a, int b)
+{
+  if (a > b)
+    return a;
+  return b;
 }

@@ -35,19 +35,25 @@ class GO: public IRLEnvironment
     void set_active_player(unsigned int active_player);
     void set_random();
   private:
-
     void update_state();
+
     void update_liberty_count();
+    int count_black_captured_stones();
+    int count_white_captured_stones();
 
     int empty_field_liberty(int j, int i);
     int stone_field_liberty(int j, int i);
-    int max(int a, int b);
 
     void capture_stones();
-
     void update_score();
-    void play_on_field(unsigned int action_id);
     void update_availible_moves();
+
+    int position_to_action(int j, int i);
+    void play_on_field(int j, int i);
+    void unplay_on_field(int j, int i);
+    int max(int a, int b);
+
+
 };
 
 #endif
