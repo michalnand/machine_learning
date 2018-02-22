@@ -6,12 +6,17 @@
 
 GO::GO(unsigned int board_size)
 {
+  gl_visualisation = nullptr;
   init(board_size);
 }
 
 GO::~GO()
 {
-
+  if (gl_visualisation != nullptr)
+  {
+    delete gl_visualisation;
+    gl_visualisation = nullptr;
+  }
 }
 
 int GO::init(unsigned int board_size)
@@ -43,6 +48,7 @@ int GO::init(unsigned int board_size)
   black_player_score = 0;
   white_player_score = 0;
 
+  gl_visualisation = new Visualisation;
   return 0;
 }
 
@@ -104,6 +110,9 @@ void GO::visualisation()
 
 
   //TODO paint nice board in opengl
+
+  if (gl_visualisation != nullptr)
+    draw();
 }
 
 void GO::set_active_player(unsigned int active_player)
@@ -380,4 +389,71 @@ int GO::max(int a, int b)
   if (a > b)
     return a;
   return b;
+}
+
+
+void GO::draw()
+{
+  gl_visualisation->start();
+
+  gl_visualisation->push();
+  
+  gl_visualisation->translate(1.0/board_size, 1.0/board_size, -3.0);
+
+
+  float radius = 0.8/board_size;
+
+  gl_visualisation->paint_square(0, 0, 0.0, 3.0, 0.3, 0.3, 0.3);
+
+  gl_visualisation->paint_square(-1.0/board_size, -1.0/board_size, 0.0, 2.0, 0.7, 0.5, 0.0);
+
+  for (unsigned int j = 0; j < board_size; j++)
+  {
+    float y = j*2.0/board_size - 1.0;
+    float x = -1.0/board_size;
+    float width = 2.0 - 2.0/board_size;
+    float height = 0.01;
+
+    gl_visualisation->paint_rectangle(x, y, 0.0, width, height, 0.0, 0.0, 0.0);
+  }
+
+  for (unsigned int j = 0; j < board_size; j++)
+  {
+    float y = -1.0/board_size;
+    float x = j*2.0/board_size - 1.0;;
+    float width = 0.01;
+    float height = 2.0 - 2.0/board_size;
+
+    gl_visualisation->paint_rectangle(x, y, 0.0, width, height, 0.0, 0.0, 0.0);
+  }
+
+  for (unsigned int j = 0; j < board_size; j++)
+    for (unsigned int i = 0; i < board_size; i++)
+      if (board[j][i].stone != GO_EMPTY_STONE)
+      {
+        float y = j*2.0/board_size - 1.0;
+        float x = i*2.0/board_size - 1.0;
+
+        float z = 0.0;
+
+        float r = 0.0, g = 0.0, b = 0.0;
+        if (board[j][i].stone == GO_WHITE_STONE)
+        {
+          r = 1.0;
+          g = 1.0;
+          b = 1.0;
+        }
+
+        if (board[j][i].stone == GO_BLACK_STONE)
+        {
+          r = 0.0;
+          g = 0.0;
+          b = 0.0;
+        }
+
+        gl_visualisation->paint_circle(x, y, z, radius, r, g, b);
+      }
+
+  gl_visualisation->pop();
+  gl_visualisation->finish();
 }

@@ -24,6 +24,8 @@ class GO: public IRLEnvironment
 
     int black_player_score, white_player_score;
 
+    Visualisation *gl_visualisation;
+
   public:
     GO(unsigned int board_size = 19);
     ~GO();
@@ -52,6 +54,8 @@ class GO: public IRLEnvironment
     void play_on_field(int j, int i);
     void unplay_on_field(int j, int i);
     int max(int a, int b);
+
+    void draw();
 
 
 };
