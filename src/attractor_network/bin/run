@@ -1,0 +1,8 @@
+./main.elf
+
+#valgrind --tool=callgrind ./main.elf
+
+cd result
+rm animation.mp4 -f
+ffmpeg -f image2 -r 25 -pattern_type glob -i '*.png' animation.mp4
+cd ..
