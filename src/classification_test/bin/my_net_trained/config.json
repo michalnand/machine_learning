@@ -2,8 +2,7 @@
 	"activation_function" : "RELU",
 	"hidden_layers" : 
 	[
-		256,
-		40
+		256
 	],
 	"hyperparameters" : 
 	{
@@ -11,15 +10,14 @@
 		"init_weight_range" : 0.0099999997764825821,
 		"learning_rate" : 9.9999997473787516e-05
 	},
-	"input_size" : 81,
+	"input_size" : 11,
 	"output_size" : 10,
-	"supervised_epoch_count" : 100,
+	"supervised_epoch_count" : 1000,
 	"type" : "fnn",
 	"weights_file" : 
 	[
 		null,
 		"my_net_trained/layer_1.bin",
-		"my_net_trained/layer_2.bin",
-		"my_net_trained/layer_3.bin"
+		"my_net_trained/layer_2.bin"
 	]
 }

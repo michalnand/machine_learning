@@ -12,6 +12,8 @@
 #include <dataset_landsat.h>
 #include <dataset_mnist.h>
 #include <dataset_mnist_tiny.h>
+#include <dataset_wine.h>
+
 #include <classification_compare.h>
 
 
@@ -93,11 +95,15 @@ int main()
 {
  math.srand(time(NULL));
 
-
+ DatasetWine dataset("/home/michal/dataset/wine_quality/winequality-white.csv");
+ 
+/*
  DatasetMnistTiny dataset("/home/michal/dataset/mnist_tiny/training.bin",
                           "/home/michal/dataset/mnist_tiny/testing.bin");
+*/
 
- // network_train(&dataset);
+
+ network_train(&dataset);
 
  network_test(&dataset);
 
