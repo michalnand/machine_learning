@@ -61,7 +61,7 @@ int main()
   {
     agent.process();
     env.visualisation();
-    //timer.sleep_ms(10);
+    timer.sleep_ms(10);
     if ((iteration%1000) == 0)
       env.log();
     iteration++;
