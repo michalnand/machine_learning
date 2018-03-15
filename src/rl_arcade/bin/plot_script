@@ -5,7 +5,7 @@ set xtic auto                         	# set xtics automatically
 set ytic auto                         # set ytics automatically
 set ztic auto
 
-set key left bottom
+set key right bottom
 
 set grid ytics lt 0.1 lw 0.1 lc rgb "#bbbbbb"
 set grid xtics lt 0.1 lw 0.1 lc rgb "#bbbbbb"
@@ -16,19 +16,16 @@ set terminal png size 1024,768 enhanced font "Helvetica,20"
 set xlabel "iteration x 1000"
 set ylabel "best action probability"
 
-set yrange [*:*]
+set yrange [0.0:1.0]
+
+set xtic 20
+
+set output 'training_progress.png'
+plot  'fnn_progress/training_0.log' using 5 every ::::200 title "FNN" with lines lw 2.0 linecolor "blue", \
+      'hnn_progress/training_3.log' using 5 every ::100 title "AE+FNN" with lines lw 2.0 linecolor "red"
 
 
-set output 'learning_progress_rate.png'
-plot  'hybrid_01_progress.log' using 5 every ::100 title "AE [64, 32] + FNN [2]" with lines lw 2.0 lc rgb 'red', \
-      'fnn_01_progress.log' using 5 every ::::200 title "FNN [64, 32, 2]" with lines lw 2.0 lc rgb 'blue', \
 
-
-set output 'testing_progress_rate.png'
-plot  'hybrid_01_progress_testing.log' using 5  title "AE [64, 32] + FNN [2]" with lines lw 2.0 lc rgb 'red', \
-      'fnn_01_progress_testing.log' using 5  title "FNN [64, 32, 2]" with lines lw 2.0 lc rgb 'blue', \
-
-
-set output 'testing_score.png'
-plot  'hybrid_01_progress_testing.log' using 1  title "AE [64, 32] + FNN [2]" with lines lw 2.0 lc rgb 'red', \
-      'fnn_01_progress_testing.log' using 1  title "FNN [64, 32, 2]" with lines lw 2.0 lc rgb 'blue', \
+set output 'testing_progress.png'
+plot  'fnn_progress/testing_0.log' using 5 title "FNN" with lines lw 2.0 linecolor "blue", \
+      'hnn_progress/testing_3.log' using 5 title "AE+FNN" with lines lw 2.0 linecolor "red"

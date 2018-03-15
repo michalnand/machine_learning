@@ -16,9 +16,11 @@ class Arcade: public IRLEnvironment
     Visualisation gl_visualisation;
     float obstacle_density;
     unsigned int iteration;
-    
+
+    std::string window_label;
+
   public:
-    Arcade();
+    Arcade(std::string *window_label = nullptr);
     ~Arcade();
 
     int init();

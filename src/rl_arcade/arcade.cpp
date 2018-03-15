@@ -3,9 +3,10 @@
 #include <math_.h>
 #include <vpu.h>
 
-Arcade::Arcade()
+Arcade::Arcade(std::string *window_label)
       :IRLEnvironment()
 {
+  this->window_label = *window_label;
   init();
 }
 
@@ -16,6 +17,8 @@ Arcade::~Arcade()
 
 int Arcade::init()
 {
+  IRLEnvironment::init();
+  
   obstacle_density = 0.1;
   actions_count = 2;
 
@@ -155,6 +158,7 @@ void Arcade::visualisation()
   gl_visualisation.print(-1.2, -0.9, z_ofs, s_best_total);
   gl_visualisation.print(-1.2, -1.0, z_ofs, s_best_now);
 
+  gl_visualisation.print(-1.2, 1.0, z_ofs, window_label);
 
 
   gl_visualisation.finish();

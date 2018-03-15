@@ -1,0 +1,14 @@
+cd fnn_progress
+
+rm *.log -f
+rm *.png -f
+
+cd ..
+
+
+cd hnn_progress
+
+rm *.log -f
+rm *.png -f
+
+cd ..

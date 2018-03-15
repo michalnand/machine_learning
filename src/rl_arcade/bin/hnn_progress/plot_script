@@ -1,0 +1,48 @@
+set   autoscale                        # scale axes automatically
+unset log                              # remove any log-scaling
+unset label                            # remove any previous labels
+set xtic auto                         	# set xtics automatically
+set ytic auto                         # set ytics automatically
+set ztic auto
+
+set key right bottom
+
+set grid ytics lt 0.1 lw 0.1 lc rgb "#bbbbbb"
+set grid xtics lt 0.1 lw 0.1 lc rgb "#bbbbbb"
+
+set terminal png size 1024,768 enhanced font "Helvetica,20"
+
+
+set xlabel "iteration x 1000"
+set ylabel "best action probability"
+
+set yrange [0.0:1.0]
+
+set xtic 20
+
+set title "AE[64, 32, 64, 85], FNN [64, 32, 2]"
+
+set output 'training_progress.png'
+plot  'training_0.log' using 5 every ::100 title "run 0" with lines lw 2.0, \
+      'training_1.log' using 5 every ::100 title "run 1" with lines lw 2.0, \
+      'training_2.log' using 5 every ::100 title "run 2" with lines lw 2.0, \
+      'training_3.log' using 5 every ::100 title "run 3" with lines lw 2.0, \
+      'training_4.log' using 5 every ::100 title "run 4" with lines lw 2.0
+
+# set yrange [0.8:1.0]
+
+set output 'testing_progress.png'
+plot 'testing_0.log' using 5  title "run 0" with lines lw 2.0, \
+      'testing_1.log' using 5  title "run 1" with lines lw 2.0, \
+      'testing_2.log' using 5  title "run 2" with lines lw 2.0, \
+      'testing_3.log' using 5  title "run 3" with lines lw 2.0, \
+      'testing_4.log' using 5  title "run 4" with lines lw 2.0
+
+set yrange [*:*]
+
+set output 'testing_score.png'
+plot  'testing_0.log' using 1  title "run 0" with lines lw 2.0, \
+      'testing_1.log' using 1  title "run 1" with lines lw 2.0, \
+      'testing_2.log' using 1  title "run 2" with lines lw 2.0, \
+      'testing_3.log' using 1  title "run 3" with lines lw 2.0, \
+      'testing_4.log' using 1  title "run 4" with lines lw 2.0, \

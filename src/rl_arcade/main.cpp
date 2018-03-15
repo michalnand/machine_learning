@@ -105,19 +105,94 @@ void hnn_test(unsigned int idx, unsigned int training_iterations = 300000, unsig
 
 }
 
-int main()
-{ 
-  math.srand(time(NULL));
 
-  unsigned int training_iterations = 300000;
-  unsigned int testing_iterations  = 50000;
+void run_demo(std::string network_path)
+{
+  Arcade env(&network_path);
 
-  for (unsigned int i = 0; i < 5; i++)
-    fnn_test(i, training_iterations, testing_iterations);
+  RL_FNN_Agent agent_trained(&env, network_path+"/supervised");
 
-  for (unsigned int i = 0; i < 5; i++)
-    hnn_test(i, training_iterations, testing_iterations);
+  while (1)
+  {
+    agent_trained.process();
+    env.visualisation();
+    //timer.sleep_ms(10);
+  }
+}
 
+
+void manual_controll()
+{
+  std::string label = "human player";
+  Arcade env(&label);
+
+  env.visualisation();
+
+  printf("\n\n\npress any key ...\n");
+
+  while (getch() <= 0)
+    timer.sleep_ms(10);
+
+  while (1)
+  {
+    int c = 0;
+
+    for (unsigned int i = 0; i < 10; i++)
+    {
+      timer.sleep_ms(5);
+      int c_tmp = getch();
+      if (c_tmp >= 0)
+        c = c_tmp;
+    }
+
+    unsigned int action = 0;
+
+    if (c == 27)
+      break;
+    else
+    if ((c == 'r')||(c == 'R'))
+      env.init();
+    else
+    if (c == ' ')
+      action = 1;
+    else
+      action = 0;
+
+    env.do_action(action);
+    env.visualisation();
+
+  }
+}
+
+int main(int argc, char *argv[])
+{
+  if (argc == 2)
+  {
+    if (*argv[1] == '0')
+      run_demo("fnn_trained_0");
+
+    if (*argv[1] == '1')
+      run_demo("hnn_trained_3");
+
+    if (*argv[1] == '2')
+      manual_controll();
+  }
+
+  /*
+  if (argc == 0)
+  {
+    math.srand(time(NULL));
+
+    unsigned int training_iterations = 300000;
+    unsigned int testing_iterations  = 50000;
+
+    for (unsigned int i = 0; i < 5; i++)
+      fnn_test(i, training_iterations, testing_iterations);
+
+    for (unsigned int i = 0; i < 5; i++)
+      hnn_test(i, training_iterations, testing_iterations);
+  }
+  */
   printf("program done\n");
 
   return 0;
