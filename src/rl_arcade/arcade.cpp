@@ -3,22 +3,35 @@
 #include <math_.h>
 #include <vpu.h>
 
-Arcade::Arcade(std::string *window_label)
+Arcade::Arcade(std::string *window_label, bool visualisation_enabled)
       :IRLEnvironment()
 {
-  this->window_label = *window_label;
+  if (window_label != nullptr)
+    this->window_label = *window_label;
+    
+  this->visualisation_enabled = visualisation_enabled;
+
+  gl_visualisation = nullptr;
+  if (visualisation_enabled)
+  {
+    gl_visualisation = new Visualisation();
+  }
+
   init();
 }
 
 Arcade::~Arcade()
 {
-
+  if (gl_visualisation != nullptr)
+  {
+    delete gl_visualisation;
+  }
 }
 
 int Arcade::init()
 {
   IRLEnvironment::init();
-  
+
   obstacle_density = 0.1;
   actions_count = 2;
 
@@ -101,67 +114,70 @@ void Arcade::do_action(unsigned int action_id)
 
 void Arcade::visualisation()
 {
-  gl_visualisation.start();
+  if (gl_visualisation != nullptr)
+  {
+    gl_visualisation->start();
 
-  float x_ofs = 0.0;
-  float y_ofs = 1.0;
-  float z_ofs = -3.0;
-  float size = 0.1;
+    float x_ofs = 0.0;
+    float y_ofs = 1.0;
+    float z_ofs = -3.0;
+    float size = 0.1;
 
-  float step = 1.9/size;
+    float step = 1.9/size;
 
-  for (unsigned int j = 0; j < screen.size(); j++)
-    for (unsigned int i = 0; i < screen[j].size(); i++)
-    {
-      float x_ = (i*1.0/step - 0.5)*2.0;
-      float y_ = (j*1.0/step - 0.5)*2.0;
-
-      float r = 1.0;
-      float g = 1.0;
-      float b = 1.0;
-
-      if (screen[j][i] < -0.9)
+    for (unsigned int j = 0; j < screen.size(); j++)
+      for (unsigned int i = 0; i < screen[j].size(); i++)
       {
-        r = 1.0;
-        g = 0.0;
-        b = 0.0;
+        float x_ = (i*1.0/step - 0.5)*2.0;
+        float y_ = (j*1.0/step - 0.5)*2.0;
+
+        float r = 1.0;
+        float g = 1.0;
+        float b = 1.0;
+
+        if (screen[j][i] < -0.9)
+        {
+          r = 1.0;
+          g = 0.0;
+          b = 0.0;
+        }
+
+        if ((j == y) && (i == x))
+        {
+          r = 0.0;
+          g = 1.0;
+          b = 0.0;
+        }
+
+        gl_visualisation->paint_square( x_ + x_ofs,
+                                     y_ + y_ofs,
+                                     0 + z_ofs,
+                                     size,
+                                     r,
+                                     g,
+                                     b);
       }
 
-      if ((j == y) && (i == x))
-      {
-        r = 0.0;
-        g = 1.0;
-        b = 0.0;
-      }
+    std::string s_summary;
+    std::string s_best_total;
+    std::string s_best_now;
 
-      gl_visualisation.paint_square( x_ + x_ofs,
-                                   y_ + y_ofs,
-                                   0 + z_ofs,
-                                   size,
-                                   r,
-                                   g,
-                                   b);
-    }
-
-  std::string s_summary;
-  std::string s_best_total;
-  std::string s_best_now;
-
-  s_summary+= "score = " + std::to_string(get_score());
-  s_best_total+= "  best total = " + std::to_string(get_best_total()*100.0) + "%";
-  s_best_now  += "  best now   = " + std::to_string(get_best_now()*100.0) + "%";
+    s_summary+= "score = " + std::to_string(get_score());
+    s_best_total+= "  best total = " + std::to_string(get_best_total()*100.0) + "%";
+    s_best_now  += "  best now   = " + std::to_string(get_best_now()*100.0) + "%";
 
 
-  gl_visualisation.set_color(1.0, 1.0, 0.0);
+    gl_visualisation->set_color(1.0, 1.0, 0.0);
 
-  gl_visualisation.print(-1.2, -0.7, z_ofs, s_summary);
-  gl_visualisation.print(-1.2, -0.9, z_ofs, s_best_total);
-  gl_visualisation.print(-1.2, -1.0, z_ofs, s_best_now);
+    gl_visualisation->print(-1.2, -0.7, z_ofs, s_summary);
+    gl_visualisation->print(-1.2, -0.9, z_ofs, s_best_total);
+    gl_visualisation->print(-1.2, -1.0, z_ofs, s_best_now);
 
-  gl_visualisation.print(-1.2, 1.0, z_ofs, window_label);
+    gl_visualisation->print(-1.2, 1.0, z_ofs, window_label);
 
 
-  gl_visualisation.finish();
+    gl_visualisation->finish();
+  }
 
   printf("%u : %6.3f %6.5f %6.5f %%\n", iteration, get_score(), get_score_filtered(), get_best_now()*100.0);
 

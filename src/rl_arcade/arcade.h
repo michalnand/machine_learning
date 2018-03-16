@@ -13,14 +13,15 @@ class Arcade: public IRLEnvironment
 
     sStateGeometry geometry;
 
-    Visualisation gl_visualisation;
+    Visualisation *gl_visualisation;
     float obstacle_density;
     unsigned int iteration;
 
     std::string window_label;
-
+    bool visualisation_enabled;
+    
   public:
-    Arcade(std::string *window_label = nullptr);
+    Arcade(std::string *window_label, bool visualisation_enabled = true);
     ~Arcade();
 
     int init();
