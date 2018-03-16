@@ -45,6 +45,8 @@ void fnn_test(unsigned int idx, unsigned int training_iterations = 300000, unsig
   RL_FNN_Agent agent_trained(&env, network_result+"/supervised");
   iteration = 0;
 
+  env.init();
+
   for (unsigned int i = 0; i < testing_iterations; i++)
   {
     agent_trained.process();
@@ -74,6 +76,8 @@ void hnn_test(unsigned int idx, unsigned int training_iterations = 300000, unsig
   RL_HFNN_Agent agent(&env, "hnn");
 
   iteration = 0;
+
+  env.init();
 
   for (unsigned int i = 0; i < training_iterations; i++)
   {
@@ -178,7 +182,7 @@ int main(int argc, char *argv[])
       manual_controll();
   }
 
-  /*
+
   if (argc == 0)
   {
     math.srand(time(NULL));
@@ -186,13 +190,13 @@ int main(int argc, char *argv[])
     unsigned int training_iterations = 300000;
     unsigned int testing_iterations  = 50000;
 
-    for (unsigned int i = 0; i < 5; i++)
+    for (unsigned int i = 0; i < 10; i++)
       fnn_test(i, training_iterations, testing_iterations);
 
-    for (unsigned int i = 0; i < 5; i++)
+    for (unsigned int i = 0; i < 10; i++)
       hnn_test(i, training_iterations, testing_iterations);
   }
-  */
+
   printf("program done\n");
 
   return 0;
