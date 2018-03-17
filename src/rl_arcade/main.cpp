@@ -189,16 +189,16 @@ int main(int argc, char *argv[])
   if (argc == 2)
   {
     if (*argv[1] == '0')
-      run_demo("fnn_trained_0");
+      run_demo("results/fnn_trained_0");
 
     if (*argv[1] == '1')
-      run_demo("hnn_trained_3");
+      run_demo("results/hnn_trained_3");
 
     if (*argv[1] == '2')
       manual_controll();
   }
 
-
+/*
   if (argc == 1)
   {
     math.srand(time(NULL));
@@ -209,14 +209,14 @@ int main(int argc, char *argv[])
   //  fnn_test(3, training_iterations, testing_iterations);
   //  hnn_test(3, training_iterations, testing_iterations);
 
-/*
+
     for (unsigned int i = 0; i < 10; i++)
       fnn_test(i, training_iterations, testing_iterations);
-*/
+
     for (unsigned int i = 0; i < 10; i++)
       hnn_test(i, training_iterations, testing_iterations);
   }
-
+*/
   printf("program done\n");
 
   return 0;
