@@ -3,25 +3,129 @@
 #include <worms_arena.h>
 #include <i_rl_agent.h>
 #include <fnn_rl_agent.h>
+#include <hfnn_rl_agent.h>
 
 #include <math_.h>
 #include <timer.h>
+#include <getch.h>
 
 
-
-
-int main()
+void fnn_test(unsigned int idx, unsigned int training_iterations = 300000, unsigned int testing_iterations = 50000)
 {
-  math.srand(time(NULL));
+  std::string agent_parameters;
+  std::string training_progress_log;
+  std::string testing_progress_log;
+  std::string network_result;
+
+  agent_parameters = "parameters/fnn_" + std::to_string(idx);
+
+  training_progress_log = "results/fnn_progress/training_" + std::to_string(idx) + ".log";
+  testing_progress_log  = "results/fnn_progress/testing_" + std::to_string(idx) + ".log";
+  network_result        = "results/fnn_trained_" + std::to_string(idx);
+
+  unsigned int iteration;
+
+  std::string window_label;
+
+  window_label = "fnn_test :" + std::to_string(idx);
+
+  WormsArena env;
+
+  RL_HFNN_Agent agent(&env, agent_parameters);
+
+  iteration = 0;
+
+  for (unsigned int i = 0; i < training_iterations; i++)
+  {
+    agent.process_learn();
+    env.visualisation();
+    if ((iteration%100000) == 0)
+      agent.save(network_result);
+
+    if ((iteration%1000) == 0)
+      env.log(training_progress_log);
+    iteration++;
+  }
+
+  agent.save(network_result);
+
+
+  RL_FNN_Agent agent_trained(&env, network_result+"/supervised");
+  iteration = 0;
+
+  env.init();
+
+  for (unsigned int i = 0; i < testing_iterations; i++)
+  {
+    agent_trained.process();
+    env.visualisation();
+    if ((iteration%1000) == 0)
+      env.log(testing_progress_log);
+    iteration++;
+  }
+}
+
+
+
+void hnn_test(unsigned int idx, unsigned int training_iterations = 300000, unsigned int testing_iterations = 50000)
+{
+  std::string agent_parameters;
+  std::string training_progress_log;
+  std::string testing_progress_log;
+  std::string network_result;
+
+  training_progress_log = "results/hnn_progress/training_" + std::to_string(idx) + ".log";
+  testing_progress_log  = "results/hnn_progress/testing_" + std::to_string(idx) + ".log";
+  network_result        = "results/hnn_trained_" + std::to_string(idx);
+
+  unsigned int iteration;
 
   WormsArena env;
 /*
-  while (1)
+  agent_parameters = "parameters/hnn_" + std::to_string(idx);
+
+  RL_HFNN_Agent agent(&env, agent_parameters);
+
+  iteration = 0;
+
+  env.init();
+
+  for (unsigned int i = 0; i < training_iterations; i++)
   {
-    env.do_action(rand()%3);
-    timer.sleep_ms(10);
+    agent.process_learn();
+    env.visualisation();
+    if ((iteration%100000) == 0)
+      agent.save(network_result);
+
+    if ((iteration%1000) == 0)
+      env.log(training_progress_log);
+    iteration++;
   }
+
+  agent.save(network_result);
 */
+
+  RL_FNN_Agent agent_trained(&env, network_result+"/supervised");
+
+  iteration = 0;
+
+  env.init();
+
+  for (unsigned int i = 0; i < testing_iterations; i++)
+  {
+    agent_trained.process();
+    env.visualisation();
+    if ((iteration%1000) == 0)
+      env.log(testing_progress_log);
+    iteration++;
+  }
+
+}
+
+
+void run_demo()
+{
+  WormsArena env;
 
   sRLHyperParameters agent_hyperparameters;
   agent_hyperparameters.path_max_length = 100;
@@ -53,6 +157,29 @@ int main()
     agent.process_learn();
     env.visualisation();
   }
+}
+
+int main()
+{
+  math.srand(time(NULL));
+
+
+    math.srand(time(NULL));
+
+    unsigned int training_iterations = 300000;
+    unsigned int testing_iterations  = 50000;
+
+  //  fnn_test(0, training_iterations, testing_iterations);
+    hnn_test(0, training_iterations, testing_iterations);
+
+/*
+    for (unsigned int i = 0; i < 10; i++)
+      fnn_test(i, training_iterations, testing_iterations);
+
+    for (unsigned int i = 0; i < 10; i++)
+      hnn_test(i, training_iterations, testing_iterations);
+*/
+
 
   printf("program done\n");
 

@@ -16,9 +16,11 @@ WormsArena::~WormsArena()
 
 int WormsArena::init()
 {
+  IRLEnvironment::init();
+
   actions_count = 3;
 
-  geometry.w = 8;
+  geometry.w = 17;
   geometry.h = 1;
   geometry.d = 1;
 
@@ -101,11 +103,6 @@ void WormsArena::visualisation()
   gl_visualisation.print(-1.2, -1, -3.0, info);
 
   gl_visualisation.finish();
-}
-
-void WormsArena::log()
-{
-
 }
 
 void WormsArena::update_state()

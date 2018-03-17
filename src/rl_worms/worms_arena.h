@@ -9,7 +9,7 @@
 
 class WormsArena: public IRLEnvironment
 {
-  protected:
+  protected: 
     float score_filtered;
     unsigned int iteration;
     float x, y;
@@ -21,6 +21,7 @@ class WormsArena: public IRLEnvironment
     Food food;
     Worm worm;
 
+
   public:
     WormsArena();
     ~WormsArena();
@@ -29,7 +30,6 @@ class WormsArena: public IRLEnvironment
     void do_action(unsigned int action_id);
 
     void visualisation();
-    void log();
 
   private:
     void update_state();
