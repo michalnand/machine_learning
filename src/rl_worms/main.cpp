@@ -16,7 +16,7 @@ void fnn_test(unsigned int idx, unsigned int training_iterations = 300000, unsig
   std::string training_progress_log;
   std::string testing_progress_log;
   std::string network_result;
- 
+
   agent_parameters = "parameters/fnn_" + std::to_string(idx);
 
   training_progress_log = "results/fnn_progress/training_" + std::to_string(idx) + ".log";
@@ -166,7 +166,7 @@ int main()
   unsigned int training_iterations = 300000;
   unsigned int testing_iterations  = 50000;
 
-  for (unsigned int i = 0; i < 10; i++)
+  for (unsigned int i = 5; i < 10; i++)
   {
     hnn_test(i, training_iterations, testing_iterations);
     fnn_test(i, training_iterations, testing_iterations);

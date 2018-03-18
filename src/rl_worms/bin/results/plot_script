@@ -22,6 +22,6 @@ set xtic 20
 
 set output 'training_progress.png'
 plot  'hnn_progress/training_0.log' using 1 every ::102 title "AE+FNN - sparse" with lines lw 3.0, \
-      'hnn_progress/training_6.log' using 1 every ::102 title "AE+FNN" with lines lw 3.0, \
+      'hnn_progress/training_9.log' using 1 every ::102 title "AE+FNN" with lines lw 3.0, \
       'fnn_progress/training_3.log' using 1 every ::::200 title "FNN - sparse" with lines lw 2.0, \
-      'fnn_progress/training_6.log' using 1 every ::::200 title "FNN" with lines lw 2.0, \
+      'fnn_progress/training_9.log' using 1 every ::::200 title "FNN" with lines lw 2.0, \

@@ -10,7 +10,7 @@
     "learning_rate"       : 0.00005,
     "init_weight_range"   : 0.1,
     "dropout"             : 0.2,
-    "lambda"              : 0.00000001
+    "lambda"              : 0.0
   },
 
   "supervised_hyperparameters":
@@ -18,7 +18,7 @@
     "learning_rate"       : 0.00005,
     "init_weight_range"   : 0.1,
     "dropout"             : 0.0,
-    "lambda"              : 0.00000001
+    "lambda"              : 0.0
   },
 
   "activation_function"   : "RELU",
