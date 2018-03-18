@@ -1,0 +1,6 @@
+{
+	"epsilon" : 0.30000001192092896,
+	"gamma" : 0.98000001907348633,
+	"path_epochs_count" : 10,
+	"path_max_length" : 1000
+}

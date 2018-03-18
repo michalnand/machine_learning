@@ -40,7 +40,7 @@ int WormsArena::init()
   score_filtered = 0.0;
 
   return 0;
-}
+} 
 
 void WormsArena::do_action(unsigned int action_id)
 {
@@ -73,11 +73,10 @@ void WormsArena::do_action(unsigned int action_id)
   if (res > 0.0)
     reward+= 0.1;
 
-  score+= reward;
+  add_score(reward);
+
   iteration++;
 
-  float k = 0.9999;
-  score_filtered = k*score_filtered + (1.0 - k)*reward;
 
   state.state = food.state(worm.x, worm.y, worm.theta);
 

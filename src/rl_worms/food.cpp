@@ -76,7 +76,7 @@ float Food::eat(float x, float y)
 
 std::vector<float> Food::state(float x, float y, float theta_ofs)
 {
-  unsigned int sensors_count = 16;
+  unsigned int sensors_count = 32;
 
   std::vector<float> result;
   result.resize(sensors_count);
@@ -88,7 +88,7 @@ std::vector<float> Food::state(float x, float y, float theta_ofs)
     float theta = theta_ofs + (3.141592654*i)/sensors_count;
     float x_pos = x + r*cos(theta);
     float y_pos = y + r*sin(theta);
-
+ 
     unsigned int idx = nearest_food(x_pos, y_pos);
 
 

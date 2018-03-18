@@ -16,7 +16,7 @@ void fnn_test(unsigned int idx, unsigned int training_iterations = 300000, unsig
   std::string training_progress_log;
   std::string testing_progress_log;
   std::string network_result;
-
+ 
   agent_parameters = "parameters/fnn_" + std::to_string(idx);
 
   training_progress_log = "results/fnn_progress/training_" + std::to_string(idx) + ".log";
@@ -54,7 +54,7 @@ void fnn_test(unsigned int idx, unsigned int training_iterations = 300000, unsig
   iteration = 0;
 
   env.init();
-
+/*
   for (unsigned int i = 0; i < testing_iterations; i++)
   {
     agent_trained.process();
@@ -63,6 +63,7 @@ void fnn_test(unsigned int idx, unsigned int training_iterations = 300000, unsig
       env.log(testing_progress_log);
     iteration++;
   }
+*/
 }
 
 
@@ -81,7 +82,7 @@ void hnn_test(unsigned int idx, unsigned int training_iterations = 300000, unsig
   unsigned int iteration;
 
   WormsArena env;
-/*
+
   agent_parameters = "parameters/hnn_" + std::to_string(idx);
 
   RL_HFNN_Agent agent(&env, agent_parameters);
@@ -103,10 +104,9 @@ void hnn_test(unsigned int idx, unsigned int training_iterations = 300000, unsig
   }
 
   agent.save(network_result);
-*/
 
   RL_FNN_Agent agent_trained(&env, network_result+"/supervised");
-
+/*
   iteration = 0;
 
   env.init();
@@ -119,7 +119,7 @@ void hnn_test(unsigned int idx, unsigned int training_iterations = 300000, unsig
       env.log(testing_progress_log);
     iteration++;
   }
-
+*/
 }
 
 
@@ -163,22 +163,14 @@ int main()
 {
   math.srand(time(NULL));
 
+  unsigned int training_iterations = 300000;
+  unsigned int testing_iterations  = 50000;
 
-    math.srand(time(NULL));
-
-    unsigned int training_iterations = 300000;
-    unsigned int testing_iterations  = 50000;
-
-  //  fnn_test(0, training_iterations, testing_iterations);
-    hnn_test(0, training_iterations, testing_iterations);
-
-/*
-    for (unsigned int i = 0; i < 10; i++)
-      fnn_test(i, training_iterations, testing_iterations);
-
-    for (unsigned int i = 0; i < 10; i++)
-      hnn_test(i, training_iterations, testing_iterations);
-*/
+  for (unsigned int i = 0; i < 10; i++)
+  {
+    hnn_test(i, training_iterations, testing_iterations);
+    fnn_test(i, training_iterations, testing_iterations);
+  }
 
 
   printf("program done\n");

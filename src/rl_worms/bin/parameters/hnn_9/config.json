@@ -9,7 +9,7 @@
   {
     "learning_rate"       : 0.00005,
     "init_weight_range"   : 0.1,
-    "dropout"             : 0.2,
+    "dropout"             : 0.0,
     "lambda"              : 0.00000001
   },
 

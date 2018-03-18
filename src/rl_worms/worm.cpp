@@ -11,7 +11,7 @@ Worm::Worm()
   this->g = 0.0;
   this->b = 0.0;
   this->visualisation = nullptr;
- 
+
   left_speed = 0.0;
   right_speed = 0.0;
   inertia = 0.5;
@@ -98,7 +98,7 @@ void Worm::paint()
 {
   float z = -3.0;
   float size = 0.03;
-
+ 
   for (unsigned int i = 0; i < elements.size(); i++)
   {
     visualisation->paint_square( elements[i].x,

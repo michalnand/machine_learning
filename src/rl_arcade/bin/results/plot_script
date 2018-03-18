@@ -21,15 +21,17 @@ set yrange [0.0:1.0]
 set xtic 20
 
 set output 'training_progress.png'
-plot  'fnn_progress/training_0.log' using 5 every ::::200 title "FNN - sparse" with lines lw 2.0 linecolor "blue", \
-      'hnn_progress/training_0.log' using 5 every ::100 title "AE+FNN - sparse" with lines lw 2.0 linecolor "red", \
-      'fnn_progress/training_5.log' using 5 every ::::200 title "FNN" with lines lw 2.0 linecolor "blue", \
-      'hnn_progress/training_5.log' using 5 every ::100 title "AE+FNN" with lines lw 2.0 linecolor "red"
+plot  'hnn_progress/training_0.log' using 5 every ::100 title "AE+FNN - sparse" with lines lw 2.0,\
+      'hnn_progress/training_5.log' using 5 every ::100 title "AE+FNN" with lines lw 2.0,\
+      'fnn_progress/training_0.log' using 5 every ::::200 title "FNN - sparse" with lines lw 2.0,\
+      'fnn_progress/training_5.log' using 5 every ::::200 title "FNN" with lines lw 2.0,\
+
 
 
 
 set output 'testing_progress.png'
-plot  'fnn_progress/testing_0.log' using 5 title "FNN - sparse" with lines lw 2.0 linecolor "blue", \
-      'hnn_progress/testing_0.log' using 5 title "AE+FNN - sprase" with lines lw 2.0 linecolor "red", \
-      'fnn_progress/testing_5.log' using 5 title "FNN - sparse" with lines lw 2.0 linecolor "blue", \
-      'hnn_progress/testing_5.log' using 5 title "AE+FNN - sprase" with lines lw 2.0 linecolor "red"
+plot  'hnn_progress/testing_0.log' using 5 title "AE+FNN - sprase" with lines lw 2.0 ,\
+      'hnn_progress/testing_5.log' using 5 title "AE+FNN" with lines lw 2.0 ,\
+      'fnn_progress/testing_0.log' using 5 title "FNN - sparse" with lines lw 2.0 ,\
+      'fnn_progress/testing_5.log' using 5 title "FNN" with lines lw 2.0,\
+
