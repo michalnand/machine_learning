@@ -18,12 +18,12 @@ int main()
   nn_init.output_size = dataset.get_output_size();
   nn_init.activation_function = FNN_RELU_LAYER;
 
-  nn_init.hyperparameters.learning_rate = 0.0001;
+  nn_init.hyperparameters.learning_rate = 0.0002;
   nn_init.hyperparameters.lambda = 0.0000001;
   nn_init.hyperparameters.dropout = 0.0;
   nn_init.hyperparameters.init_weight_range = 0.1;
 
-  nn_init.hidden_layers.push_back(100);
+  nn_init.hidden_layers.push_back(256);
   nn_init.hidden_layers.push_back(64);
 
 /*
@@ -33,14 +33,14 @@ int main()
   FNN nn;
   nn.init(nn_init);
 
-  unsigned int training_iterations = 5000*100;
+  unsigned int training_iterations = 5000*1000;
 
   for (unsigned int i = 0; i < training_iterations; i++)
   {
     sDatasetItem item = dataset.get_random_training();
     nn.learn(&item.output[0], &item.input[0]);
 
-    printf("traning done %6.3f %%\n", i*100.0/training_iterations);
+    printf("training done %6.3f %%\n", i*100.0/training_iterations);
   }
 
   ClassificationCompare compare(dataset.get_output_size());
