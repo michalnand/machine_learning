@@ -8,10 +8,10 @@
 int main()
 {
   printf("starting\n");
-  CDatasetMnistTiny dataset("/home/michal/dataset/mnist_tiny/training.bin",
-                            "/home/michal/dataset/mnist_tiny/testing.bin");
+  DatasetMnistTiny dataset("/home/michal/dataset/mnist_tiny/training.txt",
+                            "/home/michal/dataset/mnist_tiny/testing.txt");
 
-
+ 
   /*
   ClassificationExperiment experiment_00("experiment_parameters/experiment_0.json", &dataset);
   experiment_00.run();
