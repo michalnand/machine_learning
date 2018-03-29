@@ -180,7 +180,6 @@ float StackItem::compute_overlap(StackItem &other)
 
 void StackItem::process_overlap(StackItem &other)
 {
-
   for (unsigned int j = 0; j < values.size(); j++)
     for (unsigned int i = 0; i < values[j].size(); i++)
     {

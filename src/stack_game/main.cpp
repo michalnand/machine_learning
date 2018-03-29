@@ -51,9 +51,9 @@ void stack_test()
 int main()
 {
   math.srand(time(NULL));
-  stack_test();
+  //stack_test();
 
-  unsigned int size = 32;
+  unsigned int size = 19;
   unsigned int training_count = 100000;
   unsigned int testing_count  = 10000;
   unsigned int unlabeled_count  = 0;
@@ -71,10 +71,12 @@ int main()
   nn_init.hyperparameters.dropout = 0.0;
   nn_init.hyperparameters.init_weight_range = 0.01;
 
+  nn_init.hidden_layers.push_back(64);
 
+/*
   nn_init.hidden_layers.push_back(256);
   nn_init.hidden_layers.push_back(32);
-
+*/
   FNN nn;
   nn.init(nn_init);
 
