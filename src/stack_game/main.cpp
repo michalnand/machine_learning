@@ -7,15 +7,58 @@
 #include <vector>
 #include <math_.h>
 
+#include <stack_item.h>
+#include <stack_game.h>
+#include <timer.h>
+#include <getch.h>
+
+void stack_test()
+{
+  /*
+  StackItem item(19, 19, 5, 5, 0);
+
+  while (1)
+  {
+    item.process();
+    item.print();
+  }
+  */
+
+  StackGame stack(31, 31);
+
+  unsigned int action = 0;
+
+  while (1)
+  {
+    action = 0;
+
+
+    if ((rand()%10000) < 15)
+      action = 1;
+
+    if (stack.get_overlap() > 0.999999)
+      action = 1;
+
+/*
+    if (getch() == ' ')
+      action = 1;
+*/
+    stack.action(action);
+    timer.sleep_ms(2);
+  }
+}
+
 int main()
 {
   math.srand(time(NULL));
+  stack_test();
 
+  unsigned int size = 32;
   unsigned int training_count = 100000;
   unsigned int testing_count  = 10000;
   unsigned int unlabeled_count  = 0;
 
-  DatasetStack dataset(32, 32, training_count, testing_count, unlabeled_count, 0.5, 0.1, 0.5);
+  DatasetStack dataset(size, size, training_count, testing_count, unlabeled_count, 0.5, 0.1, 0.5);
 
   sFNNInit nn_init;
 
@@ -30,9 +73,8 @@ int main()
 
 
   nn_init.hidden_layers.push_back(256);
-/*
   nn_init.hidden_layers.push_back(32);
-*/
+
   FNN nn;
   nn.init(nn_init);
 

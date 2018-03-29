@@ -7,10 +7,13 @@ class StackItem
 {
   public:
     std::vector<std::vector<float>> values;
-
-    unsigned int area_width, area_height;
-    unsigned int width, height;
     unsigned int x, y;
+    unsigned int target_x, target_y;
+    unsigned int width, height;
+
+  protected:
+    unsigned int area_width, area_height;
+
     unsigned int move_type;
     unsigned int state;
 
@@ -20,19 +23,22 @@ class StackItem
     StackItem();
 
     StackItem(  unsigned int area_width, unsigned int area_height,
-                unsigned int width, unsigned int height,
-                unsigned int move_type);
+                unsigned int width, unsigned int height);
+
+    StackItem(StackItem &other);
 
     ~StackItem();
 
-    void init(  unsigned int area_width, unsigned int area_height,
-                unsigned int width, unsigned int height,
-                unsigned int move_type);
 
-    void process();
+    void process(bool move);
+    void print();
+
+    float compute_overlap(StackItem &other);
+
+    void process_overlap(StackItem &other);
 
   protected:
-    void set_position(unsigned int x, unsigned int y);
+    void set_position();
 };
 
 
