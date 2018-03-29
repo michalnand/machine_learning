@@ -18,9 +18,9 @@ void fnn_test(unsigned int idx, unsigned int training_iterations = 300000, unsig
 
   agent_parameters = "parameters/fnn_" + std::to_string(idx);
 
-  training_progress_log = "results/fnn_progress/training_" + std::to_string(idx) + ".log";
-  testing_progress_log  = "results/fnn_progress/testing_" + std::to_string(idx) + ".log";
-  network_result        = "results/fnn_trained_" + std::to_string(idx);
+  training_progress_log = "results_sarsa/fnn_progress/training_" + std::to_string(idx) + ".log";
+  testing_progress_log  = "results_sarsa/fnn_progress/testing_" + std::to_string(idx) + ".log";
+  network_result        = "results_sarsa/fnn_trained_" + std::to_string(idx);
 
   unsigned int iteration;
 
@@ -33,7 +33,7 @@ void fnn_test(unsigned int idx, unsigned int training_iterations = 300000, unsig
   RL_HFNN_Agent agent(&env, agent_parameters);
 
   iteration = 0;
-
+ 
   for (unsigned int i = 0; i < training_iterations; i++)
   {
     agent.process_learn();
@@ -73,9 +73,9 @@ void hnn_test(unsigned int idx, unsigned int training_iterations = 300000, unsig
   std::string testing_progress_log;
   std::string network_result;
 
-  training_progress_log = "results/hnn_progress/training_" + std::to_string(idx) + ".log";
-  testing_progress_log  = "results/hnn_progress/testing_" + std::to_string(idx) + ".log";
-  network_result        = "results/hnn_trained_" + std::to_string(idx);
+  training_progress_log = "results_sarsa/hnn_progress/training_" + std::to_string(idx) + ".log";
+  testing_progress_log  = "results_sarsa/hnn_progress/testing_" + std::to_string(idx) + ".log";
+  network_result        = "results_sarsa/hnn_trained_" + std::to_string(idx);
 
   unsigned int iteration;
 
@@ -186,6 +186,8 @@ void manual_controll()
 
 int main(int argc, char *argv[])
 {
+
+  /*
   if (argc == 2)
   {
     if (*argv[1] == '0')
@@ -197,8 +199,8 @@ int main(int argc, char *argv[])
     if (*argv[1] == '2')
       manual_controll();
   }
+*/
 
-/*
   if (argc == 1)
   {
     math.srand(time(NULL));
@@ -206,17 +208,14 @@ int main(int argc, char *argv[])
     unsigned int training_iterations = 300000;
     unsigned int testing_iterations  = 50000;
 
-  //  fnn_test(3, training_iterations, testing_iterations);
-  //  hnn_test(3, training_iterations, testing_iterations);
-
 
     for (unsigned int i = 0; i < 10; i++)
+    {
       fnn_test(i, training_iterations, testing_iterations);
-
-    for (unsigned int i = 0; i < 10; i++)
       hnn_test(i, training_iterations, testing_iterations);
+    }
   }
-*/
+
   printf("program done\n");
 
   return 0;

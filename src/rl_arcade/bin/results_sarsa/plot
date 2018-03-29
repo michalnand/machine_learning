@@ -1,0 +1,96 @@
+cd fnn_progress
+gnuplot plot_script
+cd ..
+
+cd hnn_progress
+gnuplot plot_script
+cd ..
+
+
+cd fnn_trained_0/supervised
+gnuplot plot_script
+cd ../..
+
+cd fnn_trained_1/supervised
+gnuplot plot_script
+cd ../..
+
+cd fnn_trained_2/supervised
+gnuplot plot_script
+cd ../..
+
+cd fnn_trained_3/supervised
+gnuplot plot_script
+cd ../..
+
+cd fnn_trained_4/supervised
+gnuplot plot_script
+cd ../..
+
+cd fnn_trained_5/supervised
+gnuplot plot_script
+cd ../..
+
+cd fnn_trained_6/supervised
+gnuplot plot_script
+cd ../..
+
+cd fnn_trained_7/supervised
+gnuplot plot_script
+cd ../..
+
+cd fnn_trained_8/supervised
+gnuplot plot_script
+cd ../..
+
+cd fnn_trained_9/supervised
+gnuplot plot_script
+cd ../..
+
+
+
+
+
+
+cd hnn_trained_0/supervised
+gnuplot plot_script
+cd ../..
+
+cd hnn_trained_1/supervised
+gnuplot plot_script
+cd ../..
+
+cd hnn_trained_2/supervised
+gnuplot plot_script
+cd ../..
+
+cd hnn_trained_3/supervised
+gnuplot plot_script
+cd ../..
+
+cd hnn_trained_4/supervised
+gnuplot plot_script
+cd ../..
+
+cd hnn_trained_5/supervised
+gnuplot plot_script
+cd ../..
+
+cd hnn_trained_6/supervised
+gnuplot plot_script
+cd ../..
+
+cd hnn_trained_7/supervised
+gnuplot plot_script
+cd ../..
+
+cd hnn_trained_8/supervised
+gnuplot plot_script
+cd ../..
+
+cd hnn_trained_9/supervised
+gnuplot plot_script
+cd ../..
+
+
+gnuplot plot_script

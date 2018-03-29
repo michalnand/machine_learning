@@ -1,0 +1,275 @@
+cd fnn_progress
+
+rm *.log -f
+rm *.png -f
+
+cd ..
+
+
+cd hnn_progress
+
+rm *.log -f
+rm *.png -f
+
+cd ..
+
+
+rm *.log -f
+rm *.png -f
+
+
+cd hnn_trained_0
+rm *.json -f
+rm supervised/*.png -f
+rm supervised/*.bin -f
+rm supervised/*.log -f
+rm supervised/*.json -f
+rm unsupervised/*.png -f
+rm unsupervised/*.bin -f
+rm unsupervised/*.log -f
+rm unsupervised/*.json -f
+cd ..
+
+cd hnn_trained_1
+rm *.json -f
+rm supervised/*.png -f
+rm supervised/*.bin -f
+rm supervised/*.log -f
+rm supervised/*.json -f
+rm unsupervised/*.png -f
+rm unsupervised/*.bin -f
+rm unsupervised/*.log -f
+rm unsupervised/*.json -f
+cd ..
+
+cd hnn_trained_2
+rm *.json -f
+rm supervised/*.png -f
+rm supervised/*.bin -f
+rm supervised/*.log -f
+rm supervised/*.json -f
+rm unsupervised/*.png -f
+rm unsupervised/*.bin -f
+rm unsupervised/*.log -f
+rm unsupervised/*.json -f
+cd ..
+
+cd hnn_trained_3
+rm *.json -f
+rm supervised/*.png -f
+rm supervised/*.bin -f
+rm supervised/*.log -f
+rm supervised/*.json -f
+rm unsupervised/*.png -f
+rm unsupervised/*.bin -f
+rm unsupervised/*.log -f
+rm unsupervised/*.json -f
+cd ..
+
+cd hnn_trained_4
+rm *.json -f
+rm supervised/*.png -f
+rm supervised/*.bin -f
+rm supervised/*.log -f
+rm supervised/*.json -f
+rm unsupervised/*.png -f
+rm unsupervised/*.bin -f
+rm unsupervised/*.log -f
+rm unsupervised/*.json -f
+cd ..
+
+cd hnn_trained_5
+rm *.json -f
+rm supervised/*.png -f
+rm supervised/*.bin -f
+rm supervised/*.log -f
+rm supervised/*.json -f
+rm unsupervised/*.png -f
+rm unsupervised/*.bin -f
+rm unsupervised/*.log -f
+rm unsupervised/*.json -f
+cd ..
+
+cd hnn_trained_6
+rm *.json -f
+rm supervised/*.png -f
+rm supervised/*.bin -f
+rm supervised/*.log -f
+rm supervised/*.json -f
+rm unsupervised/*.png -f
+rm unsupervised/*.bin -f
+rm unsupervised/*.log -f
+rm unsupervised/*.json -f
+cd ..
+
+cd hnn_trained_7
+rm *.json -f
+rm supervised/*.png -f
+rm supervised/*.bin -f
+rm supervised/*.log -f
+rm supervised/*.json -f
+rm unsupervised/*.png -f
+rm unsupervised/*.bin -f
+rm unsupervised/*.log -f
+rm unsupervised/*.json -f
+cd ..
+
+cd hnn_trained_8
+rm *.json -f
+rm supervised/*.png -f
+rm supervised/*.bin -f
+rm supervised/*.log -f
+rm supervised/*.json -f
+rm unsupervised/*.png -f
+rm unsupervised/*.bin -f
+rm unsupervised/*.log -f
+rm unsupervised/*.json -f
+cd .. 
+
+cd hnn_trained_9
+rm *.json -f
+rm supervised/*.png -f
+rm supervised/*.bin -f
+rm supervised/*.log -f
+rm supervised/*.json -f
+rm unsupervised/*.png -f
+rm unsupervised/*.bin -f
+rm unsupervised/*.log -f
+rm unsupervised/*.json -f
+cd ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+cd fnn_trained_0
+rm *.json -f
+rm supervised/*.png -f
+rm supervised/*.bin -f
+rm supervised/*.log -f
+rm supervised/*.json -f
+rm unsupervised/*.png -f
+rm unsupervised/*.bin -f
+rm unsupervised/*.log -f
+rm unsupervised/*.json -f
+cd ..
+
+cd fnn_trained_1
+rm *.json -f
+rm supervised/*.png -f
+rm supervised/*.bin -f
+rm supervised/*.log -f
+rm supervised/*.json -f
+rm unsupervised/*.png -f
+rm unsupervised/*.bin -f
+rm unsupervised/*.log -f
+rm unsupervised/*.json -f
+cd ..
+
+cd fnn_trained_2
+rm *.json -f
+rm supervised/*.png -f
+rm supervised/*.bin -f
+rm supervised/*.log -f
+rm supervised/*.json -f
+rm unsupervised/*.png -f
+rm unsupervised/*.bin -f
+rm unsupervised/*.log -f
+rm unsupervised/*.json -f
+cd ..
+
+cd fnn_trained_3
+rm *.json -f
+rm supervised/*.png -f
+rm supervised/*.bin -f
+rm supervised/*.log -f
+rm supervised/*.json -f
+rm unsupervised/*.png -f
+rm unsupervised/*.bin -f
+rm unsupervised/*.log -f
+rm unsupervised/*.json -f
+cd ..
+
+cd fnn_trained_4
+rm *.json -f
+rm supervised/*.png -f
+rm supervised/*.bin -f
+rm supervised/*.log -f
+rm supervised/*.json -f
+rm unsupervised/*.png -f
+rm unsupervised/*.bin -f
+rm unsupervised/*.log -f
+rm unsupervised/*.json -f
+cd ..
+
+cd fnn_trained_5
+rm *.json -f
+rm supervised/*.png -f
+rm supervised/*.bin -f
+rm supervised/*.log -f
+rm supervised/*.json -f
+rm unsupervised/*.png -f
+rm unsupervised/*.bin -f
+rm unsupervised/*.log -f
+rm unsupervised/*.json -f
+cd ..
+
+cd fnn_trained_6
+rm *.json -f
+rm supervised/*.png -f
+rm supervised/*.bin -f
+rm supervised/*.log -f
+rm supervised/*.json -f
+rm unsupervised/*.png -f
+rm unsupervised/*.bin -f
+rm unsupervised/*.log -f
+rm unsupervised/*.json -f
+cd ..
+
+cd fnn_trained_7
+rm *.json -f
+rm supervised/*.png -f
+rm supervised/*.bin -f
+rm supervised/*.log -f
+rm supervised/*.json -f
+rm unsupervised/*.png -f
+rm unsupervised/*.bin -f
+rm unsupervised/*.log -f
+rm unsupervised/*.json -f
+cd ..
+
+cd fnn_trained_8
+rm *.json -f
+rm supervised/*.png -f
+rm supervised/*.bin -f
+rm supervised/*.log -f
+rm supervised/*.json -f
+rm unsupervised/*.png -f
+rm unsupervised/*.bin -f
+rm unsupervised/*.log -f
+rm unsupervised/*.json -f
+cd ..
+
+cd fnn_trained_9
+rm *.json -f
+rm supervised/*.png -f
+rm supervised/*.bin -f
+rm supervised/*.log -f
+rm supervised/*.json -f
+rm unsupervised/*.png -f
+rm unsupervised/*.bin -f
+rm unsupervised/*.log -f
+rm unsupervised/*.json -f
+cd ..

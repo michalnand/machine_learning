@@ -166,7 +166,7 @@ int main()
   unsigned int training_iterations = 300000;
   unsigned int testing_iterations  = 50000;
 
-  for (unsigned int i = 5; i < 10; i++)
+  for (unsigned int i = 0; i < 10; i++)
   {
     hnn_test(i, training_iterations, testing_iterations);
     fnn_test(i, training_iterations, testing_iterations);

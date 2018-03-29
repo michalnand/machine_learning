@@ -1,0 +1,65 @@
+set   autoscale                        # scale axes automatically
+unset log                              # remove any log-scaling
+unset label                            # remove any previous labels
+set xtic auto                         	# set xtics automatically
+set ytic auto                         # set ytics automatically
+set ztic auto
+
+set key right bottom
+
+set grid ytics lt 0.1 lw 0.1 lc rgb "#bbbbbb"
+set grid xtics lt 0.1 lw 0.1 lc rgb "#bbbbbb"
+
+set terminal png size 1024,768 enhanced font "Helvetica,20"
+
+set xlabel "iteration x 1000"
+set ylabel "best action probability"
+
+set yrange [0.0:1.0]
+
+set xtic 20
+
+set title "AE[64, 32, 64, 85], FNN [64, 32, 2]"
+
+set output 'training_progress.png'
+plot  'training_0.log' using 5 every ::100 title "sparse weights" with lines lw 2.0 linecolor "red", \
+      'training_1.log' using 5 every ::100 notitle with lines lw 2.0 linecolor "red", \
+      'training_2.log' using 5 every ::100 notitle with lines lw 2.0 linecolor "red", \
+      'training_3.log' using 5 every ::100 notitle with lines lw 2.0 linecolor "red", \
+      'training_4.log' using 5 every ::100 notitle with lines lw 2.0 linecolor "red", \
+      'training_5.log' using 5 every ::100 title "no sparse weights" with lines lw 2.0 linecolor "blue", \
+      'training_6.log' using 5 every ::100 notitle with lines lw 2.0 linecolor "blue", \
+      'training_7.log' using 5 every ::100 notitle with lines lw 2.0 linecolor "blue", \
+      'training_8.log' using 5 every ::100 notitle with lines lw 2.0 linecolor "blue", \
+      'training_9.log' using 5 every ::100 notitle with lines lw 2.0 linecolor "blue"
+
+ 
+set output 'testing_progress.png'
+plot 'testing_0.log' using 5  title "sparse weights" with lines lw 2.0 linecolor "red", \
+      'testing_1.log' using 5  notitle with lines lw 2.0 linecolor "red", \
+      'testing_2.log' using 5  notitle with lines lw 2.0 linecolor "red", \
+      'testing_3.log' using 5  notitle with lines lw 2.0 linecolor "red", \
+      'testing_4.log' using 5  notitle with lines lw 2.0 linecolor "red", \
+      'testing_5.log' using 5  title "no sparse weights" with lines lw 2.0 linecolor "blue", \
+      'testing_6.log' using 5  notitle with lines lw 2.0 linecolor "blue", \
+      'testing_7.log' using 5  notitle with lines lw 2.0 linecolor "blue", \
+      'testing_8.log' using 5  notitle with lines lw 2.0 linecolor "blue", \
+      'testing_9.log' using 5  notitle with lines lw 2.0 linecolor "blue"
+
+
+set yrange [*:*]
+
+set ylabel "score"
+
+
+set output 'testing_score.png'
+plot  'testing_0.log' using 1  title "sparse weights" with lines lw 2.0 linecolor "red", \
+      'testing_1.log' using 1  notitle with lines lw 2.0 linecolor "red", \
+      'testing_2.log' using 1  notitle with lines lw 2.0 linecolor "red", \
+      'testing_3.log' using 1  notitle with lines lw 2.0 linecolor "red", \
+      'testing_4.log' using 1  notitle with lines lw 2.0 linecolor "red", \
+      'testing_5.log' using 1  title "no sparse run 0" with lines lw 2.0 linecolor "blue", \
+      'testing_6.log' using 1  notitle with lines lw 2.0 linecolor "blue", \
+      'testing_7.log' using 1  notitle with lines lw 2.0 linecolor "blue", \
+      'testing_8.log' using 1  notitle with lines lw 2.0 linecolor "blue", \
+      'testing_9.log' using 1  notitle with lines lw 2.0 linecolor "blue"

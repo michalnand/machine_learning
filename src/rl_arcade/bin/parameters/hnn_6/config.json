@@ -7,9 +7,9 @@
 
   "unsupervised_hyperparameters":
   {
-    "learning_rate"       : 0.0005,
+    "learning_rate"       : 0.0002,
     "init_weight_range"   : 0.1,
-    "dropout"             : 0.2,
+    "dropout"             : 0.0,
     "lambda"              : 0.0
   },
 

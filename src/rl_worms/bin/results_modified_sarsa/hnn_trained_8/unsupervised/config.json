@@ -1,0 +1,24 @@
+{
+	"activation_function" : "RELU",
+	"features_size" : 8,
+	"hidden_layers" : 
+	[
+		32
+	],
+	"hyperparameters" : 
+	{
+		"dropout" : 0,
+		"init_weight_range" : 0.10000000149011612,
+		"lambda" : 0,
+		"learning_rate" : 4.9999998736893758e-05
+	},
+	"input_size" : 17,
+	"weights_file" : 
+	[
+		null,
+		"results/hnn_trained_8/unsupervised/layer_1.bin",
+		"results/hnn_trained_8/unsupervised/layer_2.bin",
+		"results/hnn_trained_8/unsupervised/layer_3.bin",
+		"results/hnn_trained_8/unsupervised/layer_4.bin"
+	]
+}
