@@ -33,7 +33,7 @@ void fnn_test(unsigned int idx, unsigned int training_iterations = 300000, unsig
   RL_HFNN_Agent agent(&env, agent_parameters);
 
   iteration = 0;
- 
+
   for (unsigned int i = 0; i < training_iterations; i++)
   {
     agent.process_learn();
@@ -136,7 +136,7 @@ void run_demo(std::string network_path)
   {
     agent_trained.process();
     env.visualisation();
-    //timer.sleep_ms(10);
+    timer.sleep_ms(20);
   }
 }
 
@@ -187,7 +187,6 @@ void manual_controll()
 int main(int argc, char *argv[])
 {
 
-  /*
   if (argc == 2)
   {
     if (*argv[1] == '0')
@@ -199,7 +198,7 @@ int main(int argc, char *argv[])
     if (*argv[1] == '2')
       manual_controll();
   }
-*/
+
 
   if (argc == 1)
   {
