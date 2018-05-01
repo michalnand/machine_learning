@@ -199,7 +199,7 @@ int main(int argc, char *argv[])
       manual_controll();
   }
 
-
+/*
   if (argc == 1)
   {
     math.srand(time(NULL));
@@ -214,7 +214,7 @@ int main(int argc, char *argv[])
       hnn_test(i, training_iterations, testing_iterations);
     }
   }
-
+*/
   printf("program done\n");
 
   return 0;
